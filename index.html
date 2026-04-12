@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title id="app-title">Salam Games - Hay Day Full List</title>
+    <style>
+        :root {
+            --primary: #76c142; 
+            --primary-dark: #5da031;
+            --wood-light: #e6b879;
+            --wood-dark: #8d5524;
+            --wood-border: #5c3a1e;
+            --cream: #fff8e1;
+            --text-main: #5c3a1e;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            --bg-overlay: rgb(105 221 86 / 24%);
+            --copy-color: #60d05a; 
+            --copy-dark: #47a042;
+            --reset-color: #d9534f; 
+            --reset-dark: #c9302c;
+        }
+
+        body.dark-mode {
+            --primary: #2d4a1e; --primary-dark: #1e3314;
+            --wood-light: #4a3b2a; --wood-dark: #2c1e12;
+            --wood-border: #1a110a; --cream: #2d2d2d;
+            --text-main: #e0e0e0; 
+            --bg-overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background: url('WALL2.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 100px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow-x: hidden; 
+            font-size: 16px; 
+        }
+
+        .animated-farm-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; 
+            overflow: hidden; 
+        }
+
+        @keyframes floatAndWander {
+            0% { transform: translate(0, 0) scale(0.8); opacity: 0.5; }
+            33% { transform: translate(10vw, -10vh) scale(1.1); opacity: 0.8; }
+            66% { transform: translate(-15vw, 5vh) scale(0.9); opacity: 0.6; }
+            100% { transform: translate(0, 0) scale(0.8); opacity: 0.5; }
+        }
+
+        .farm-object {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+            animation: floatAndWander linear infinite alternate;
+            filter: blur(2px); 
+        }
+        
+        .app-overlay {
+            background-color: var(--bg-overlay);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 2; 
+        }
+
+        .header {
+            background: var(--wood-light);
+            border: 4px solid var(--wood-border);
+            border-radius: 20px;
+            padding: 15px 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin-left: auto; margin-right: auto;
+            display: flex;
+            flex-wrap: wrap; 
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: all 0.3s ease; 
+        }
+
+        .logo-container img { max-width: 180px; height: auto; }
+        .header-info {
+            flex: 1; 
+            min-width: 250px; 
+            text-align: right;
+            font-size: 0.9rem;
+            transition: all 0.3s ease; 
+        }
+        html[dir="ltr"] .header-info { text-align: left; }
+
+        .header-info h3 { margin: 0 0 10px 0; color: var(--wood-border); }
+        .header-info p { margin: 4px 0; line-height: 1.4; }
+        .header-info a { color: var(--wood-dark); text-decoration: none; font-weight: bold; }
+        .header-info a:hover { text-decoration: underline; }
+
+        /* Style for Link Buttons (Red - used for Linkfly in shared message) */
+        .btn-link-red {
+            background: var(--reset-color); 
+            border: 2px solid var(--reset-dark);
+            color: white !important;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+            box-shadow: 0 3px 0 var(--reset-dark);
+            transition: 0.2s;
+            text-decoration: none !important;
+            display: inline-block;
+            margin-inline-start: 5px;
+        }
+        .btn-link-red:hover { background: var(--reset-dark); }
+        .btn-link-red:active { box-shadow: none; transform: translateY(3px); background: var(--reset-dark); }
+        
+        /* NEW Style for Link Buttons (Green - used for YouTube/Linkfly on main page & YouTube on shared page) */
+        .btn-link-green {
+            background: var(--primary); 
+            border: 2px solid var(--primary-dark);
+            color: white !important;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+            box-shadow: 0 3px 0 var(--primary-dark);
+            transition: 0.2s;
+            text-decoration: none !important;
+            display: inline-block;
+            margin-inline-start: 5px;
+            margin-block: 5px; /* Added for separation in shared message */
+        }
+        .btn-link-green:hover { background: var(--primary-dark); }
+        .btn-link-green:active { box-shadow: none; transform: translateY(3px); background: var(--primary-dark); }
+
+
+        .controls { 
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; flex-basis: auto; 
+            transition: all 0.3s ease; 
+        }
+        
+        .btn-style {
+            background: var(--primary); 
+            border: 2px solid var(--primary-dark);
+            color: white; 
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            box-shadow: 0 3px 0 var(--primary-dark);
+            transition: 0.2s;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .btn-style:hover { background: var(--primary-dark); }
+        .btn-style:active, .btn-style.active { box-shadow: none; transform: translateY(3px); background: var(--primary-dark); }
+
+        /* Dark Mode Toggle Button */
+        #theme-toggle-btn {
+            background: var(--wood-dark);
+            border: 2px solid var(--wood-border);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 3px 0 var(--wood-border);
+            transition: 0.2s;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        #theme-toggle-btn:hover { opacity: 0.85; }
+        #theme-toggle-btn:active { box-shadow: none; transform: translateY(3px); }
+
+        .category-title {
+            background: var(--wood-dark);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 25px;
+            border: 2px solid var(--wood-border);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
+        }
+        .category-title.shared-header {
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .card {
+            background-color: var(--cream);
+            border: 2px solid var(--wood-light);
+            border-radius: 12px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-image {
+            width: 55px; height: 55px; 
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 0.75rem;
+            height: 30px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .item-lvl { font-size: 0.65rem; }
+
+        .counter-wrapper {
+            padding: 3px; width: 100%;
+            display: flex; justify-content: center; align-items: center;
+        }
+        
+        .btn-count {
+            padding: 0;
+            width: 24px; height: 24px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: 0.1s;
+            color: white;
+            box-shadow: 0 2px 0; 
+            border: none; 
+        }
+        
+        .btn-count:active { box-shadow: none !important; transform: translateY(2px); }
+
+        .btn-minus { background-color: var(--reset-color); box-shadow: 0 2px 0 var(--reset-dark); }
+        .btn-minus:hover { background-color: var(--reset-dark); }
+
+        .btn-plus { background-color: var(--copy-color); box-shadow: 0 2px 0 var(--copy-dark); }
+        .btn-plus:hover { background-color: var(--copy-dark); }
+        
+        .count-input {
+            font-size: 0.9rem; font-weight: bold;
+            width: 30px;
+            text-align: center;
+            margin: 0 3px;
+            border: 1px solid var(--wood-dark);
+            background-color: white;
+            border-radius: 3px;
+        }
+        
+        /* Style for Shared List Count */
+        .shared-count {
+            font-size: 1.2rem;
+            font-weight: bolder;
+            color: var(--primary-dark);
+            margin-top: 5px;
+            padding: 5px 0;
+        }
+
+
+        .footer-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--wood-dark);
+            border-top: 4px solid var(--wood-border);
+            padding: 8px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            color: white; z-index: 100;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease; 
+        }
+        .total-box { font-size: 1.1rem; }
+        .action-btns {
+            display: flex;
+            gap: 8px; 
+            transition: all 0.3s ease; 
+        }
+        .action-btns button { 
+            font-size: 0.85rem; 
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .action-btns .btn-copy, .action-btns .btn-copy-link { 
+            background: var(--copy-color);
+            border: 2px solid var(--copy-dark);
+            color: white;
+            box-shadow: 0 3px 0 var(--copy-dark);
+        }
+        .action-btns .btn-copy:active, .action-btns .btn-copy:hover, 
+        .action-btns .btn-copy-link:active, .action-btns .btn-copy-link:hover {
+            box-shadow: none; transform: translateY(3px); background: var(--copy-dark);
+        }
+        
+        .action-btns .btn-reset {
+            background: var(--reset-color);
+            border: 2px solid var(--reset-dark);
+            color: white;
+            box-shadow: 0 3px 0 var(--reset-dark);
+        }
+        .action-btns .btn-reset:active, .action-btns .btn-reset:hover {
+            box-shadow: none; transform: translateY(3px); background: var(--reset-dark);
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 14px; padding-bottom: 70px; }
+            .header { padding: 10px 15px; gap: 10px; }
+            .logo-container img { max-width: 120px; } 
+            .controls { gap: 5px; flex-wrap: wrap; justify-content: center; }
+            .btn-style { padding: 5px 9px; font-size: 0.72rem; }
+            #theme-toggle-btn { padding: 5px 10px; font-size: 0.8rem; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+            .card { padding: 5px; }
+            .item-image { width: 45px; height: 45px; }
+            .item-name { font-size: 0.65rem; height: 25px; }
+            .btn-count { width: 20px; height: 20px; font-size: 0.75rem; }
+            .count-input { width: 20px; font-size: 0.75rem; }
+            .btn-link-red, .btn-link-green { padding: 4px 8px; font-size: 0.7rem; }
+            .footer-bar { padding: 5px 8px; flex-wrap: wrap; gap: 4px; }
+            .total-box { font-size: 0.85rem; }
+            .action-btns { gap: 5px; }
+            .action-btns button { font-size: 0.7rem; padding: 4px 7px; }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="animated-farm-bg">
+    <div class="farm-object" style="width: 60px; height: 60px; top: 10%; left: 5%; animation-duration: 40s; animation-delay: 0s; background: rgba(118, 193, 66, 0.6);"></div>
+    <div class="farm-object" style="width: 40px; height: 40px; top: 40%; left: 20%; animation-duration: 50s; animation-delay: 5s; background: rgba(242, 226, 93, 0.6);"></div>
+    <div class="farm-object" style="width: 70px; height: 70px; top: 70%; left: 80%; animation-duration: 35s; animation-delay: 10s; background: rgba(244, 154, 193, 0.6);"></div>
+    <div class="farm-object" style="width: 50px; height: 50px; top: 25%; left: 60%; animation-duration: 48s; animation-delay: 15s; background: rgba(161, 215, 231, 0.6);"></div>
+    <div class="farm-object" style="width: 30px; height: 30px; top: 85%; left: 35%; animation-duration: 30s; animation-delay: 20s; background: rgba(230, 184, 121, 0.6);"></div>
+</div>
+
+<div class="app-overlay">
+    <div class="header">
+        <div class="logo-container">
+            <img src="548d411c53ea814c5dd161e9ff82a42b.png" alt="Salam Games" class="logo-img">
+        </div>
+        
+        <div class="header-info" id="header-info">
+            <h3 id="welcome-text"></h3>
+            <p id="instruction-choose"></p>
+            <p id="instruction-copy-link-intro" style="font-weight:bold; color:var(--copy-dark); margin-bottom:10px;"></p>
+            <p id="instruction-copy"></p>
+            <p id="instruction-reset"></p>
+            <p class="yt-link" id="instruction-youtube"></p>
+            <p class="social-link" id="instruction-social"></p>
+        </div>
+
+        <div class="controls" id="controls">
+            <button class="btn-style active" id="lang-ar" onclick="setLang('ar')">🇸🇦 العربية</button>
+            <button class="btn-style" id="lang-en" onclick="setLang('en')">🇺🇸 English</button>
+            <button class="btn-style" id="lang-es" onclick="setLang('es')">🇪🇸 Español</button>
+            <button class="btn-style" id="lang-fr" onclick="setLang('fr')">🇫🇷 Français</button>
+            <button class="btn-style" id="lang-de" onclick="setLang('de')">🇩🇪 Deutsch</button>
+            <button class="btn-style" id="lang-pl" onclick="setLang('pl')">🇵🇱 Polski</button>
+            <button class="btn-style" id="lang-zh" onclick="setLang('zh')">🇨🇳 中文</button>
+            <button class="btn-style" id="lang-ja" onclick="setLang('ja')">🇯🇵 日本語</button>
+            <button class="btn-style" id="lang-hi" onclick="setLang('hi')">🇮🇳 हिन्दी</button>
+            <button id="theme-toggle-btn" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button>
+        </div>
+    </div>
+    <div id="items-container"></div>
+</div>
+
+<div class="footer-bar" id="footer-bar">
+    <div class="total-box"><span id="total-label">Total:</span> <strong id="total-count">0</strong></div>
+    <div class="action-btns" id="action-btns">
+        <button class="btn-reset" onclick="resetAll()" id="reset-text"></button>
+        <button class="btn-copy" onclick="copyList()" id="copy-text-btn"></button>
+        <button class="btn-copy" onclick="copyLink()" id="copy-link-btn"></button>
+    </div>
+</div>
+
+<script>
+    const BASE_IMG_PATH = "";
+
+    const machines = [
+        { id: 'mining', name_ar: '⛏️ المنجم', name_en: '⛏️ Mine', name_es: '⛏️ Mina', name_fr: '⛏️ Mine', name_de: '⛏️ Mine', name_pl: '⛏️ Kopalnia', name_ja: '⛏️ 鉱山', name_zh: '⛏️ 矿山', name_hi: '⛏️ खदान', items: [
+            { id: 'Axe', lvl: 6, name_ar: 'فأس', name_en: 'Axe' }, // تم إضافة الفأس هنا
+            { id: 'Dynamite', lvl: 24, name_ar: 'ديناميت', name_en: 'Dynamite' },
+            { id: 'TNT_Barrel', lvl: 35, name_ar: 'برميل TNT', name_en: 'TNT Barrel' },
+            { id: 'Shovel', lvl: 24, name_ar: 'مجرفة', name_en: 'Shovel' },
+            { id: 'Pickaxe', lvl: 34, name_ar: 'معول', name_en: 'Pickaxe' }, 
+            { id: 'Saw', lvl: 35, name_ar: 'منشار', name_en: 'Saw' } 
+        ]},
+        { id: 'expansion', name_ar: '📦 أدوات التطوير', name_en: '📦 Upgrade Materials', name_es: '📦 Materiales', name_fr: '📦 Matériaux', name_de: '📦 Material', name_pl: '📦 Materiały', name_ja: '📦 資材', name_zh: '📦 材料', name_hi: '📦 सामग्री', items: [
+            { id: 'Bolt', lvl: 1, name_ar: 'مسمار عريض', name_en: 'Bolt' },
+            { id: 'Plank', lvl: 1, name_ar: 'لوح خشبي', name_en: 'Plank' },
+            { id: 'Duct_Tape', lvl: 1, name_ar: 'شريط لاصق', name_en: 'Duct Tape' },
+            { id: 'Nail', lvl: 1, name_ar: 'مسمار', name_en: 'Nail' },
+            { id: 'Screw', lvl: 1, name_ar: 'برغي', name_en: 'Screw' },
+            { id: 'Wood_Panel', lvl: 1, name_ar: 'لوح مزدوج', name_en: 'Wood Panel' },
+            { id: 'Land_Deed', lvl: 22, name_ar: 'صك أرض', name_en: 'Land Deed' },
+            { id: 'Mallet', lvl: 22, name_ar: 'مطرقة', name_en: 'Mallet' },
+            { id: 'Marker_Stake', lvl: 22, name_ar: 'وتد', name_en: 'Marker Stake' },
+            { id: 'Map_Piece', lvl: 34, name_ar: 'خريطة', name_en: 'Map Piece' }
+        ]},
+        { id: 'trees', name_ar: '🌳 الأشجار', name_en: '🌳 Trees', name_es: '🌳 Árboles', name_fr: '🌳 Arbres', name_de: '🌳 Bäume', name_pl: '🌳 Drzewa', name_ja: '🌳 木', name_zh: '🌳 树木', name_hi: '🌳 पेड़', items: [
+            { id: 'apple', lvl: 15, name_ar: 'تفاح', name_en: 'apple' },
+            { id: 'raspberry', lvl: 19, name_ar: 'توت أحمر', name_en: 'Raspberry' },
+            { id: 'cherry', lvl: 22, name_ar: 'كرز', name_en: 'Cherry' },
+            { id: 'blackberry', lvl: 26, name_ar: 'توت أسود', name_en: 'Blackberry' },
+            { id: 'cacao', lvl: 36, name_ar: 'كاكاو', name_en: 'Cacao' },
+            { id: 'coffee', lvl: 42, name_ar: 'قهوة', name_en: 'Coffee' },
+            { id: 'olive', lvl: 57, name_ar: 'زيتون', name_en: 'Olive' },
+            { id: 'lemon', lvl: 66, name_ar: 'ليمون', name_en: 'Lemon' },
+            { id: 'orange', lvl: 71, name_ar: 'برتقال', name_en: 'Orange' },
+            { id: 'peach', lvl: 76, name_ar: 'خوخ', name_en: 'Peach' },
+            { id: 'banana', lvl: 88, name_ar: 'موز', name_en: 'Banana' },
+            { id: 'plum', lvl: 94, name_ar: 'برقوق', name_en: 'Plum' },
+            { id: 'mango', lvl: 97, name_ar: 'مانجو', name_en: 'Mango' },
+            { id: 'coconut', lvl: 101, name_ar: 'جوز هند', name_en: 'Coconut' },
+            { id: 'guava', lvl: 104, name_ar: 'جوافة', name_en: 'Guava' },
+            { id: 'pomegranate', lvl: 107, name_ar: 'رمان', name_en: 'Pomegranate' }
+        ]},
+            { 
+            id: 'crops', 
+            name_ar: '🌾 المحاصيل والحقول', 
+            name_en: '🌾 Crops & Fields', 
+            name_es: '🌾 Cultivos y Campos', 
+            name_fr: '🌾 Cultures et Champs', 
+            name_de: '🌾 Feldfrüchte', 
+            name_pl: '🌾 Uprawy i Pola', 
+            name_ja: '🌾 畑作物', 
+            name_zh: '🌾 农作物', 
+            name_hi: '🌾 फसलें और खेत', 
+            items: [
+                { id: 'Wheat', lvl: 1, name_ar: 'قمح', name_en: 'Wheat', name_es: 'Trigo', name_fr: 'Blé', name_de: 'Weizen', name_pl: 'Pszenica', name_ja: '小麦', name_zh: '小麦', name_hi: 'गेहूं' },
+                { id: 'Corn', lvl: 2, name_ar: 'ذرة', name_en: 'Corn', name_es: 'Maíz', name_fr: 'Maïs', name_de: 'Mais', name_pl: 'Kukurydza', name_ja: 'トウモロコシ', name_zh: '玉米', name_hi: 'मकई' },
+                { id: 'Soybean', lvl: 5, name_ar: 'فول صويا', name_en: 'Soybean', name_es: 'Soja', name_fr: 'Soja', name_de: 'Sojabohne', name_pl: 'Soja', name_ja: '大豆', name_zh: '大豆', name_hi: 'सोयाबीन' },
+                { id: 'Sugarcane', lvl: 7, name_ar: 'قصب سكر', name_en: 'Sugarcane', name_es: 'Caña de azúcar', name_fr: 'Canne à sucre', name_de: 'Zuckerrohr', name_pl: 'Trzcina cukrowa', name_ja: 'サトウキビ', name_zh: '甘蔗', name_hi: 'गन्ना' },
+                { id: 'Carrot', lvl: 9, name_ar: 'جزر', name_en: 'Carrot', name_es: 'Zanahoria', name_fr: 'Carotte', name_de: 'Karotte', name_pl: 'Marchewka', name_ja: '人参', name_zh: '胡萝卜', name_hi: 'गाजर' },
+                { id: 'Indigo', lvl: 13, name_ar: 'نيلة', name_en: 'Indigo', name_es: 'Añil', name_fr: 'Indigo', name_de: 'Indigo', name_pl: 'Indygo', name_ja: '藍', name_zh: '靛蓝', name_hi: 'नीل' },
+                { id: 'Pumpkin', lvl: 15, name_ar: 'يقطين', name_en: 'Pumpkin', name_es: 'Calabaza', name_fr: 'Citrouille', name_de: 'Kürbis', name_pl: 'Dynia', name_ja: 'カボチャ', name_zh: '南瓜', name_hi: 'कद्दू' },
+                { id: 'Cotton', lvl: 18, name_ar: 'قطن', name_en: 'Cotton', name_es: 'Algodón', name_fr: 'Coton', name_de: 'Baumwolle', name_pl: 'Bawełna', name_ja: '綿', name_zh: '棉花', name_hi: 'कपास' },
+                { id: 'Chili_Pepper', lvl: 25, name_ar: 'فلفل حار', name_en: 'Chili Pepper', name_es: 'Chile', name_fr: 'Piment', name_de: 'Chili', name_pl: 'Papryczka chili', name_ja: '唐辛子', name_zh: '辣椒', name_hi: 'मिर्च' },
+                { id: 'Tomato', lvl: 30, name_ar: 'طماطم', name_en: 'Tomato', name_es: 'Tomate', name_fr: 'Tomate', name_de: 'Tomate', name_pl: 'Pomidor', name_ja: 'トマト', name_zh: '西红柿', name_hi: 'टमाटर' },
+                { id: 'Blueberries', lvl: 30, name_ar: 'توت أزرق', name_en: 'Blueberries', name_es: 'Arándanos', name_fr: 'Myrtilles', name_de: 'Blaubeeren', name_pl: 'Jagody', name_ja: 'ブルーベリー', name_zh: '蓝莓', name_hi: 'ब्लूबेरी' },
+                { id: 'Strawberry', lvl: 34, name_ar: 'فراولة', name_en: 'Strawberry', name_es: 'Fresa', name_fr: 'Fraise', name_de: 'Erdbeere', name_pl: 'Truskawka', name_ja: 'イチゴ', name_zh: '草莓', name_hi: 'स्ट्रॉबेरी' },
+                { id: 'Potato', lvl: 35, name_ar: 'بطاطا', name_en: 'Potato', name_es: 'Patata', name_fr: 'Pomme de terre', name_de: 'Kartoffel', name_pl: 'Ziemniak', name_ja: 'じゃがいも', name_zh: '土豆', name_hi: 'आलू' },
+                { id: 'Chamomile', lvl: 45, name_ar: 'بابونج', name_en: 'Chamomile', name_es: 'Manzanilla', name_fr: 'Camomille', name_de: 'Kamille', name_pl: 'Rumianek', name_ja: 'カモミール', name_zh: '洋甘菊', name_hi: 'कैमोमाइल' },
+                { id: 'Asparagus', lvl: 49, name_ar: 'هليون', name_en: 'Asparagus', name_es: 'Espárragos', name_fr: 'Asperges', name_de: 'Spargel', name_pl: 'Szparagi', name_ja: 'アスパラガス', name_zh: '芦笋', name_hi: 'शतावरी' },
+                { id: 'Sesame', lvl: 50, name_ar: 'سمسم', name_en: 'Sesame', name_es: 'Sésamo', name_fr: 'Sésame', name_de: 'Sesam', name_pl: 'Sezam', name_ja: 'ごま', name_zh: '芝麻', name_hi: 'तिल' },
+                { id: 'Pineapple', lvl: 52, name_ar: 'أناناس', name_en: 'Pineapple', name_es: 'Piña', name_fr: 'Ananas', name_de: 'Ananas', name_pl: 'Ananas', name_ja: 'パイナップル', name_zh: '菠萝', name_hi: 'अनानास' },
+                { id: 'Lily', lvl: 53, name_ar: 'زنبق', name_en: 'Lily', name_es: 'Lirio', name_fr: 'Lys', name_de: 'Lilie', name_pl: 'Lilia', name_ja: 'ユリ', name_zh: '百合', name_hi: 'लिली' },
+                { id: 'Rice', lvl: 56, name_ar: 'أرز', name_en: 'Rice', name_es: 'Arroz', name_fr: 'Riz', name_de: 'Reis', name_pl: 'Ryż', name_ja: '米', name_zh: '大米', name_hi: 'चावल' },
+                { id: 'Lettuce', lvl: 58, name_ar: 'خس', name_en: 'Lettuce', name_es: 'Lechuga', name_fr: 'Laitue', name_de: 'Salat', name_pl: 'Sałata', name_ja: 'レタス', name_zh: '生菜', name_hi: 'सलाद पत्ता' },
+                { id: 'Garlic', lvl: 60, name_ar: 'ثوم', name_en: 'Garlic', name_es: 'Ajo', name_fr: 'Ail', name_de: 'Knoblauch', name_pl: 'Czosnek', name_ja: 'ニンニク', name_zh: '大蒜', name_hi: 'लहसुन' },
+                { id: 'Sunflower', lvl: 63, name_ar: 'زهرة شمس', name_en: 'Sunflower', name_es: 'Girasol', name_fr: 'Tournesol', name_de: 'Sonnenblume', name_pl: 'Słonecznik', name_ja: 'ひまわり', name_zh: '向日葵', name_hi: 'सूरजमुखी' },
+                { id: 'Cabbage', lvl: 65, name_ar: 'ملفوف', name_en: 'Cabbage', name_es: 'Col', name_fr: 'Chou', name_de: 'Kohl', name_pl: 'Kapusta', name_ja: 'キャベツ', name_zh: '卷心菜', name_hi: 'कंध' },
+                { id: 'Onion', lvl: 68, name_ar: 'بصل', name_en: 'Onion', name_es: 'Cebolla', name_fr: 'Oignon', name_de: 'Zwiebel', name_pl: 'Cebula', name_ja: '玉ねぎ', name_zh: '洋葱', name_hi: 'प्याज' },
+                { id: 'Cucumber', lvl: 70, name_ar: 'خيار', name_en: 'Cucumber', name_es: 'Pepino', name_fr: 'Concombre', name_de: 'Gurke', name_pl: 'Ogórek', name_ja: 'キュウリ', name_zh: '黄瓜', name_hi: 'खीरा' },
+                { id: 'Beetroot', lvl: 72, name_ar: 'شمندر', name_en: 'Beetroot', name_es: 'Remolacha', name_fr: 'Betterave', name_de: 'Rote Bete', name_pl: 'Burak', name_ja: 'ビート', name_zh: '甜菜根', name_hi: 'चुकंदर' },
+                { id: 'Bell_Pepper', lvl: 74, name_ar: 'فلفل رومي', name_en: 'Bell Pepper', name_es: 'Pimiento', name_fr: 'Poivron', name_de: 'Paprika', name_pl: 'Papryka', name_ja: 'ピーマン', name_zh: '甜椒', name_hi: 'शिमला मिर्च' },
+                { id: 'Ginger', lvl: 78, name_ar: 'زنجبيل', name_en: 'Ginger', name_es: 'Jengibre', name_fr: 'Gingembre', name_de: 'Ingwer', name_pl: 'Imbir', name_ja: 'ショウガ', name_zh: '姜', name_hi: 'अदरक' },
+                { id: 'Tea_Leaf', lvl: 80, name_ar: 'أوراق شاي', name_en: 'Tea Leaf', name_es: 'Hoja de té', name_fr: 'Feuille de thé', name_de: 'Teeblatt', name_pl: 'Liść herbaty', name_ja: '茶葉', name_zh: '茶叶', name_hi: 'चाय पत्ती' },
+                { id: 'Peony', lvl: 82, name_ar: 'فاوانيا', name_en: 'Peony', name_es: 'Peonía', name_fr: 'Pivoine', name_de: 'Pfingstrose', name_pl: 'Piwonia', name_ja: 'シャクヤク', name_zh: '牡丹', name_hi: 'पियोनी' },
+                { id: 'Broccoli', lvl: 83, name_ar: 'بروكلي', name_en: 'Broccoli', name_es: 'Brócoli', name_fr: 'Brocoli', name_de: 'Brokkoli', name_pl: 'Brokuł', name_ja: 'ブロッコリー', name_zh: '西兰花', name_hi: 'ब्रोकोली' },
+                { id: 'Grapes', lvl: 84, name_ar: 'عنب', name_en: 'Grapes', name_es: 'Uvas', name_fr: 'Raisins', name_de: 'Trauben', name_pl: 'Winogrona', name_ja: 'ブドウ', name_zh: '葡萄', name_hi: 'अंगूर' },
+                { id: 'Mint', lvl: 85, name_ar: 'نعناع', name_en: 'Mint', name_es: 'Menta', name_fr: 'Menthe', name_de: 'Minze', name_pl: 'Mięta', name_ja: 'ミント', name_zh: '薄荷', name_hi: 'पुदीना' },
+                { id: 'Passion_Fruit', lvl: 88, name_ar: 'فاكهة العاطفة', name_en: 'Passion Fruit', name_es: 'Maracuyá', name_fr: 'Fruit de la passion', name_de: 'Passionsfrucht', name_pl: 'Marakuja', name_ja: 'パッションフルーツ', name_zh: '百香果', name_hi: 'पैशन फ्रूट' },
+                { id: 'Mushroom', lvl: 89, name_ar: 'فطر', name_en: 'Mushroom', name_es: 'Seta', name_fr: 'Champignon', name_de: 'Pilz', name_pl: 'Grzyb', name_ja: 'キノコ', name_zh: '蘑菇', name_hi: 'मशरूम' },
+                { id: 'Eggplant', lvl: 90, name_ar: 'باذنجان', name_en: 'Eggplant', name_es: 'Berenjena', name_fr: 'Aubergine', name_de: 'Aubergine', name_pl: 'Bakłażan', name_ja: 'ナス', name_zh: '茄子', name_hi: 'बैंगन' },
+                { id: 'Watermelon', lvl: 92, name_ar: 'بطيخ', name_en: 'Watermelon', name_es: 'Sandía', name_fr: 'Pastèque', name_de: 'Wassermelone', name_pl: 'Arbuz', name_ja: 'スイカ', name_zh: '西瓜', name_hi: 'तरबूज' },
+                { id: 'Chickpea', lvl: 95, name_ar: 'حمص', name_en: 'Chickpea', name_es: 'Garbanzo', name_fr: 'Pois chiche', name_de: 'Kichererbse', name_pl: 'Ciecierzyca', name_ja: 'ひよこ豆', name_zh: '鹰嘴豆', name_hi: 'चना' },
+                { id: 'Oats', lvl: 119, name_ar: 'شوفان', name_en: 'Oats', name_es: 'Avena', name_fr: 'Avoine', name_de: 'Hafer', name_pl: 'Owsik', name_ja: 'オート麦', name_zh: '燕麦', name_hi: 'जई' }
+            ]},
+        { id: 'perfumerie', name_ar: '🌸 معمل العطور', name_en: 'Perfumerie', name_es: '🌸 Perfumería', name_fr: '🌸 Parfumerie', name_de: '🌸 Parfümerie', name_pl: '🌸 Perfumeria', name_ja: '🌸 香水製造機', name_zh: '🌸 香水作坊', name_hi: '🌸 इत्र कारखाना', items: [
+            { id: 'Fresh_Diffuser', lvl: 110, name_ar: 'ناشر منعش', name_en: 'Fresh Diffuser' },
+            { id: 'Zesty_Perfume', lvl: 113, name_ar: 'عطر منعش', name_en: 'Zesty Perfume' },
+            { id: 'Calming_Diffuser', lvl: 116, name_ar: 'ناشر مهدئ', name_en: 'Calming Diffuser' }
+        ]},
+        { id: 'essential_oils', name_ar: '🌿 معمل الزيوت', name_en: 'Essential Oils Lab', name_es: '🌿 Lab. de Aceites Esenciales', name_fr: '🌿 Labo Huiles Essentielles', name_de: '🌿 Ätherische Öle Labor', name_pl: '🌿 Laboratorium Olejków Eterycznych', name_ja: '🌿 エッセンシャルオイルラボ', name_zh: '🌿 精油实验室', name_hi: '🌿 आवश्यक तेल लैब', items: [
+            { id: 'Lemon_Essential_Oil', lvl: 68, name_ar: 'زيت الليمون', name_en: 'Lemon Essential Oil' },
+            { id: 'Mint_Essential_Oil', lvl: 85, name_ar: 'زيت النعناع', name_en: 'Mint Essential Oil' },
+            { id: 'Ginger_Essential_Oil', lvl: 80, name_ar: 'زيت الزنجبيل', name_en: 'Ginger Essential Oil' },
+            { id: 'Chamomile_Essential_Oil', lvl: 74, name_ar: 'زيت البابونج', name_en: 'Chamomile Essential Oil' }
+        ]},
+        { id: 'milkshake', name_ar: '🥤 محل الميلك شيك', name_en: 'Milkshake Bar', name_es: '🥤 Bar de Batidos', name_fr: '🥤 Bar à Milkshake', name_de: '🥤 Milchshake-Bar', name_pl: '🥤 Bar Mleczny', name_ja: '🥤 ミルクシェイクバー', name_zh: '🥤 奶昔吧', name_hi: '🥤 मिल्कशेक बार', items: [
+            { id: 'Vanilla_Milkshake', lvl: 124, name_ar: 'ميلك شيك فانيليا', name_en: 'Vanilla Milkshake' },
+            { id: 'Mocha_Milkshake', lvl: 125, name_ar: 'ميلك شيك موكا', name_en: 'Mocha Milkshake' },
+            { id: 'Fruity_Milkshake', lvl: 126, name_ar: 'ميلك شيك فواكه', name_en: 'Fruity Milkshake' }
+        ]},
+        { id: 'porridge', name_ar: '🥣 محل العصيدة', name_en: 'Porridge Bar', name_es: '🥣 Bar de Gachas', name_fr: '🥣 Bar à Porridge', name_de: '🥣 Brei-Bar', name_pl: '🥣 Bar Owsiankowy', name_ja: '🥣 ポリッジバー', name_zh: '🥣 粥吧', name_hi: '🥣 दलिया बार', items: [
+            { id: 'Apple_Porridge', lvl: 119, name_ar: 'عصيدة التفاح', name_en: 'Apple Porridge' },
+            { id: 'Sweet_Porridge', lvl: 120, name_ar: 'عصيدة حلوة', name_en: 'Sweet Porridge' },
+            { id: 'Fresh_Porridge', lvl: 122, name_ar: 'عصيدة طازجة', name_en: 'Fresh Porridge' }
+        ]},
+        { id: 'omelet', name_ar: '🍳 محطة الأومليت', name_en: 'Omelet Station', name_es: '🍳 Estación de Tortillas', name_fr: '🍳 Station Omelette', name_de: '🍳 Omelett-Station', name_pl: '🍳 Stacja Omletów', name_ja: '🍳 オムレツステーション', name_zh: '🍳 煎蛋站', name_hi: '🍳 आमलेट स्टेशन', items: [
+            { id: 'Colorful_Omelet', lvl: 77, name_ar: 'أومليت ملون', name_en: 'Colorful Omelet' },
+            { id: 'Spring_Omelet', lvl: 77, name_ar: 'أومليت الربيع', name_en: 'Spring Omelet' },
+            { id: 'Rice_Omelet', lvl: 83, name_ar: 'أومليت الأرز', name_en: 'Rice Omelet' },
+            { id: 'Cheese_Omelet', lvl: 79, name_ar: 'أومليت بالجبن', name_en: 'Cheese Omelet' },
+            { id: 'Potato_Omelet', lvl: 87, name_ar: 'أومليت البطاطس', name_en: 'Potato Omelet' }
+        ]},
+        { id: 'waffle', name_ar: '🧇 صانع الوافل', name_en: 'Waffle Maker', name_es: '🧇 Máquina de Gofres', name_fr: '🧇 Gaufrier', name_de: '🧇 Waffeleisen', name_pl: '🧇 Gofrownica', name_ja: '🧇 ワッフルメーカー', name_zh: '🧇 华夫饼机', name_hi: '🧇 वफ़ल मेकर', items: [
+            { id: 'Plain_Waffles', lvl: 114, name_ar: 'وافل سادة', name_en: 'Plain Waffles' },
+            { id: 'Breakfast_Waffles', lvl: 119, name_ar: 'وافل الإفطار', name_en: 'Breakfast Waffles' },
+            { id: 'Berry_Waffles', lvl: 114, name_ar: 'وافل التوت', name_en: 'Berry Waffles' },
+            { id: 'Chocolate_Waffles', lvl: 117, name_ar: 'وافل الشوكولاتة', name_en: 'Chocolate Waffles' },
+            { id: 'Blueberry_Waffles', lvl: 118, name_ar: 'وافل التوت الأزرق', name_en: 'Blueberry Waffles' }
+        ]},
+        { id: 'cupcake', name_ar: '🧁 صانع الكب كيك', name_en: 'Cupcake Maker', name_es: '🧁 Máquina de Cupcakes', name_fr: '🧁 Machine à Cupcakes', name_de: '🧁 Cupcake-Maschine', name_pl: '🧁 Maszyna do Babeczek', name_ja: '🧁 カップケーキメーカー', name_zh: '🧁 纸杯蛋糕机', name_hi: '🧁कपकेक मेकर', items: [
+            { id: 'Plain_Cupcake', lvl: 109, name_ar: 'كب كيك سادة', name_en: 'Plain Cupcake' },
+            { id: 'Tropical_Cupcake', lvl: 112, name_ar: 'كب كيك استوائي', name_en: 'Tropical Cupcake' },
+            { id: 'Cookie_Cupcake', lvl: 114, name_ar: 'كب كيك الكوكيز', name_en: 'Cookie Cupcake' },
+            { id: 'Guava_Cupcake', lvl: 109, name_ar: 'كب كيك الجوافة', name_en: 'Guava Cupcake' }
+        ]},
+        { id: 'stew', name_ar: '🍲 قدر اليخنة', name_en: 'Stew Pot', name_es: '🍲 Olla de Estofado', name_fr: '🍲 Marmite à Ragoût', name_de: '🍲 Eintopf-Topf', name_pl: '🍲 Garnek Gulaszu', name_ja: '🍲 シチュー鍋', name_zh: '🍲 炖锅', name_hi: '🍲 स्टू पॉट', items: [
+            { id: 'Chickpea_Stew', lvl: 106, name_ar: 'يخنة الحمص', name_en: 'Chickpea Stew' },
+            { id: 'Winter_Stew', lvl: 112, name_ar: 'يخنة الشتاء', name_en: 'Winter Stew' },
+            { id: 'Chili_Stew', lvl: 109, name_ar: 'يخنة الفلفل الحار', name_en: 'Chili Stew' }
+        ]},
+        { id: 'yogurt', name_ar: '🍨 صانع الزبادي', name_en: 'Yogurt Maker', name_es: '🍨 Máquina de Yogur', name_fr: '🍨 Yaourtière', name_de: '🍨 Joghurtmaschine', name_pl: '🍨 Jogurtownica', name_ja: '🍨 ヨーグルトメーカー', name_zh: '🍨 酸奶机', name_hi: '🍨 दही मेकर', items: [
+            { id: 'Plain_Yogurt', lvl: 103, name_ar: 'زبادي سادة', name_en: 'Plain Yogurt' },
+            { id: 'Strawberry_Yogurt', lvl: 105, name_ar: 'زبادي الفراولة', name_en: 'Strawberry Yogurt' },
+            { id: 'Tropical_Yogurt', lvl: 109, name_ar: 'زبادي استوائي', name_en: 'Tropical Yogurt' },
+            { id: 'Breakfast_Bowl', lvl: 119, name_ar: 'وعاء الإفطار', name_en: 'Breakfast Bowl' }
+        ]},
+        { id: 'fudge', name_ar: '🍫 محل الفدج', name_en: 'Fudge Shop', name_es: '🍫 Tienda de Fudge', name_fr: '🍫 Boutique de Fudge', name_de: '🍫 Fudge-Laden', name_pl: '🍫 Sklep z Fudge', name_ja: '🍫 ファッジショップ', name_zh: '🍫 软糖店', name_hi: '🍫 फज की दुकान', items: [
+            { id: 'Mint_Fudge', lvl: 102, name_ar: 'فدج النعناع', name_en: 'Mint Fudge' },
+            { id: 'Chili_Fudge', lvl: 104, name_ar: 'فدج حار', name_en: 'Chili Fudge' },
+            { id: 'Lemon_Fudge', lvl: 108, name_ar: 'فدج الليمون', name_en: 'Lemon Fudge' },
+            { id: 'Peanut_Fudge', lvl: 111, name_ar: 'فدج الفول السوداني', name_en: 'Peanut Fudge' },
+            { id: 'Rich_Fudge', lvl: 99, name_ar: 'فدج غني', name_en: 'Rich Fudge' }
+        ]},
+        { id: 'pottery', name_ar: '🏺 الفخار', name_en: 'Pottery Studio', name_es: '🏺 Estudio de Cerámica', name_fr: '🏺 Atelier de Poterie', name_de: '🏺 Töpferei', name_pl: '🏺 Pracownia Ceramiczna', name_ja: '🏺 陶芸スタジオ', name_zh: '🏺 陶艺工作室', name_hi: '🏺 मिट्टी के बर्तन स्टूडियो', items: [
+            { id: 'Tea_Pot', lvl: 94, name_ar: 'إبريق شاي', name_en: 'Tea Pot' },
+            { id: 'Potted_Plant', lvl: 96, name_ar: 'نبتة منزلية', name_en: 'Potted Plant' },
+            { id: 'Clay_Mug', lvl: 99, name_ar: 'كوب فخار', name_en: 'Clay Mug' }
+        ]},
+        { id: 'preservation', name_ar: '🥫 محطة الحفظ', name_en: 'Preservation Station', name_es: '🥫 Estación de Conservas', name_fr: '🥫 Station de Conservation', name_de: '🥫 Konservierungsstation', name_pl: '🥫 Stacja Przetworów', name_ja: '🥫 保存ステーション', name_zh: '🥫 保鲜站', name_hi: '🥫 संरक्षण स्टेशन', items: [
+            { id: 'Dried_Fruit', lvl: 102, name_ar: 'فاكهة مجففة', name_en: 'Dried Fruit' },
+            { id: 'Pickles', lvl: 91, name_ar: 'مخلل', name_en: 'Pickles' },
+            { id: 'Canned_Fish', lvl: 95, name_ar: 'سمك معلب', name_en: 'Canned Fish' },
+            { id: 'Kimchi', lvl: 98, name_ar: 'كيمتشي', name_en: 'Kimchi' },
+            { id: 'Guava_Compote', lvl: 104, name_ar: 'كومبوت الجوافة', name_en: 'Guava Compote' }
+        ]},
+        { id: 'donut', name_ar: '🍩 صانع الدونات', name_en: 'Donut Maker', name_es: '🍩 Máquina de Donas', name_fr: '🍩 Machine à Donuts', name_de: '🍩 Donut-Maschine', name_pl: '🍩 Maszyna do Pączków', name_ja: '🍩 ドーナツメーカー', name_zh: '🍩 墨西哥卷饼厨房', name_hi: '🍩 डोनट मेकर', items: [
+            { id: 'Plain_Donut', lvl: 76, name_ar: 'دونات سادة', name_en: 'Plain Donut' },
+            { id: 'Cream_Donut', lvl: 86, name_ar: 'دونات بالكريمة', name_en: 'Cream Donut' },
+            { id: 'Bacon_Donut', lvl: 88, name_ar: 'دونات اللحم', name_en: 'Bacon Donut' },
+            { id: 'Filled_Donut', lvl: 93, name_ar: 'دونات محشوة', name_en: 'Filled Donut' },
+            { id: 'Crunchy_Donut', lvl: 82, name_ar: 'دونات مقرمشة', name_en: 'Crunchy Donut' },
+            { id: 'Sprinkled_Donut', lvl: 79, name_ar: 'دونات مزينة', name_en: 'Sprinkled Donut' }
+        ]},
+        { id: 'bath', name_ar: '🧼 كشك الاستحمام', name_en: 'Bath Kiosk', name_es: '🧼 Quiosco de Baño', name_fr: '🧼 Kiosque de Bain', name_de: '🧼 Bade-Kiosk', name_pl: '🧼 Kiosk Kąpielowy', name_ja: '🧼 バスルームキオスク', name_zh: '🧼 浴室亭', name_hi: '🧼 बाथ कियोस्क', items: [
+            { id: 'Exfoliating_Soap', lvl: 93, name_ar: 'صابون مقشر', name_en: 'Exfoliating Soap' },
+            { id: 'Honey_Face_Mask', lvl: 99, name_ar: 'قناع وجه بالعسل', name_en: 'Honey Face Mask' },
+            { id: 'Honey_Soap', lvl: 84, name_ar: 'صابون بالعسل', name_en: 'Honey Soap' },
+            { id: 'Lemon_Lotion', lvl: 84, name_ar: 'لوشن الليمون', name_en: 'Lemon Lotion' },
+            { id: 'Rich_Soap', lvl: 121, name_ar: 'صابون غني', name_en: 'Rich Soap' }
+        ]},
+        { 
+    id: 'squirrel', 
+    name_ar: '🐿️ شجرة السنجاب والنحل', 
+    name_en: '🐿️ Squirrel & Bee Tree', 
+    name_es: '🐿️ Árbol de Ardilla y Abeja', 
+    name_fr: '🐿️ Arbre à Écureuils et Abeilles', 
+    name_de: '🐿️ Eichhörnchen- und Bienenbaum', 
+    name_pl: '🐿️ Drzewo Wiewiórki i Pszczół', 
+    name_ja: '🐿️ リスとハチの木', 
+    name_zh: '🐿️ 松鼠和蜜蜂树', 
+    name_hi: '🐿️ गिलहरी और मधुमक्खी का पेड़', 
+    items: [
+        { id: 'Honeycomb', lvl: 39, name_ar: 'قرص عسل', name_en: 'Honeycomb', name_es: 'Panal', name_fr: 'Rayon de miel', name_de: 'Bienenwabe', name_pl: 'Plaster miodu', name_ja: 'ハチの巣', name_zh: '蜂窝', name_hi: 'शهد का छत्ता' },
+        { id: 'Peanuts', lvl: 62, name_ar: 'فول سوداني', name_en: 'Peanuts', name_es: 'Cacahuetes', name_fr: 'Cacahuètes', name_de: 'Erdnüsse', name_pl: 'Orzeszki ziemne', name_ja: 'ピーナッツ', name_zh: '花生', name_hi: 'मूंगफली' }
+    ]},
+        { id: 'deep_fryer', 
+    name_ar: '🍗 قلاية عميقة', 
+    name_en: 'Deep Fryer', 
+    name_es: '🍗 Freidora Profunda', 
+    name_fr: '🍗 Friteuse', 
+    name_de: '🍗 Fritteuse', 
+    name_pl: '🍗 Frytkownica', 
+    name_ja: '🍗 フライヤー', 
+    name_zh: '🍗 深炸锅', 
+    name_hi: '🍗 डीप फ्रायर', 
+    items: [ 
+        { id: 'Bacon_Fries', lvl: 87, name_ar: 'بطاطس مقلية باللحم المقدد', name_en: 'Bacon Fries' },
+        { id: 'Hand_Pies', lvl: 90, name_ar: 'فطائر يدوية', name_en: 'Hand Pies' },
+        { id: 'Chili_Poppers', lvl: 93, name_ar: 'بوبار الفلفل الحار', name_en: 'Chili Poppers' },
+        { id: 'Falafel', lvl: 96, name_ar: 'فلافل', name_en: 'Falafel' },
+        { id: 'Fried_Candy_Bar', lvl: 99, name_ar: 'قطعة حلوى مقلية', name_en: 'Fried Candy Bar' },
+        { id: 'Samosa', lvl: 102, name_ar: 'سمبوسة', name_en: 'Samosa' }
+    ]},
+        { id: 'candle', name_ar: '🕯️ صانع الشموع', name_en: 'Candle Maker', name_es: '🕯️ Máquina de Velas', name_fr: '🕯️ Machine à Bougies', name_de: '🕯️ Kerzenmacher', name_pl: '🕯️ Maszyna do Świec', name_ja: '🕯️ キャンドルメーカー', name_zh: '🕯️ 蜡烛机', name_hi: '🕯️ मोमबत्ती मेकर', items: [
+            { id: 'Scented_Candle', lvl: 48, name_ar: 'شمعة معطرة', name_en: 'Scented Candle' },
+            { id: 'Raspberry_Candle', lvl: 52, name_ar: 'شمعة التوت', name_en: 'Raspberry Candle' },
+            { id: 'Lemon_Candle', lvl: 59, name_ar: 'شمعة الليمون', name_en: 'Lemon Candle' },
+            { id: 'Cherry_Candle', lvl: 67, name_ar: 'شمعة الكرز', name_en: 'Cherry Candle' },
+            { id: 'Floral_Candle', lvl: 75, name_ar: 'شمعة الزهور', name_en: 'Floral Candle' }
+        ]},
+        { id: 'sushi', 
+    name_ar: '🍣 مطعم السوشي', 
+    name_en: 'Sushi Bar', 
+    name_es: '🍣 Bar de Sushi', 
+    name_fr: '🍣 Bar à Sushi', 
+    name_de: '🍣 Sushi-Bar', 
+    name_pl: '🍣 Bar Sushi', 
+    name_ja: '🍣 寿司バー', 
+    name_zh: '🍣 寿司吧', 
+    name_hi: '🍣 सुशी बार', 
+    items: [
+        { id: 'Sushi_Roll', lvl: 56, name_ar: 'لفافة سوشي', name_en: 'Sushi Roll' }, 
+        { id: 'Lobster_Sushi', lvl: 59, name_ar: 'سوشي بالكركند', name_en: 'Lobster Sushi' }, 
+        { id: 'Egg_Sushi', lvl: 63, name_ar: 'سوشي بالبيض', name_en: 'Egg Sushi' }, 
+        { id: 'Big_Sushi_Roll', lvl: 76, name_ar: 'لفافة سوشي كبيرة', name_en: 'Big Sushi Roll' }, 
+        { id: 'Rice_Ball', lvl: 110, name_ar: 'كرة الأرز', name_en: 'Rice Ball' }
+    ]},
+        { id: 'taco', name_ar: '🌮 محل التاكو', name_en: 'Taco Kitchen', name_es: '🌮 Cocina de Tacos', name_fr: '🌮 Cuisine à Tacos', name_de: '🌮 Taco-Küche', name_pl: '🌮 Kuchnia Taco', name_ja: '🌮 タコス・キッチン', name_zh: '🌮 墨西哥卷饼厨房', name_hi: '🌮 टैको किचन', items: [ 
+            { id: 'Taco', lvl: 77, name_ar: 'تاكو', name_en: 'Taco' },
+            { id: 'Fish_Taco_L79', lvl: 79, name_ar: 'تاكو السمك', name_en: 'Fish Taco' }, 
+            { id: 'Quesadilla', lvl: 82, name_ar: 'كاساديا', name_en: 'Quesadilla' },
+            { id: 'Nachos', lvl: 87, name_ar: 'ناتشوز', name_en: 'Nachos' } 
+        ]},
+        { id: 'hat', name_ar: '🧢 صانع القبعات', name_en: 'Hat Maker', name_es: '🧢 Máquina de Sombreros', name_fr: '🧢 Machine à Chapeaux', name_de: '🧢 Hutmacher', name_pl: '🧢 Maszyna do Kapeluszy', name_ja: '🧢 帽子メーカー', name_zh: '🧢 帽子机', name_hi: '🧢 टोपी मेकर', items: [
+            { id: 'Sun_Hat', lvl: 46, name_ar: 'قبعة الشمس', name_en: 'Sun Hat' },
+            { id: 'Top_Hat', lvl: 55, name_ar: 'قبعة عالية', name_en: 'Top Hat' },
+            { id: 'Cloche_Hat', lvl: 62, name_ar: 'قبعة كلوش', name_en: 'Cloche Hat' },
+            { id: 'Flower_Hat', lvl: 69, name_ar: 'قبعة الزهور', name_en: 'Flower Hat' }
+        ]},
+        { id: 'wok', name_ar: '🍜 مطبخ الووك', name_en: 'Wok Kitchen', name_es: '🍜 Cocina Wok', name_fr: '🍜 Cuisine Wok', name_de: '🍜 Wok-Küche', name_pl: '🍜 Kuchnia Wok', name_ja: '🍜 中華鍋キッチン', name_zh: '🍜 炒锅厨房', name_hi: '🍜 कड़ाही किचन', items: [ 
+            { id: 'Fried_Rice', lvl: 69, name_ar: 'أرز مقلي', name_en: 'Fried Rice' }, 
+            { id: 'Spicy_Fish', lvl: 79, name_ar: 'سمك حار', name_en: 'Spicy Fish' }, 
+            { id: 'Peanut_Noodles', lvl: 86, name_ar: 'نودلز الفول السوداني', name_en: 'Peanut Noodles' },
+            { id: 'Tofu_Stir_Fry', lvl: 89, name_ar: 'خضار مقلي بالتوفو', name_en: 'Tofu Stir Fry' }
+        ]},
+        { id: 'tea', name_ar: '☕ ماكينة الشاي', name_en: 'Tea Stand', name_es: '☕ Puesto de Té', name_fr: '☕ Stand de Thé', name_de: '☕ Teestand', name_pl: '☕ Stoisko z Herbatą', name_ja: '☕ ティー・スタンド', name_zh: '☕ 茶摊', name_hi: '☕ चाय का स्टेंड', items: [
+            { id: 'Green_Tea', lvl: 80, name_ar: 'شاي أخضر', name_en: 'Green Tea' }, 
+            { id: 'Milk_Tea', lvl: 81, name_ar: 'شاي بالحليب', name_en: 'Milk Tea' }, 
+            { id: 'Honey_Tea', lvl: 83, name_ar: 'شاي بالعسل', name_en: 'Honey Tea' }, 
+            { id: 'Lemon_Tea', lvl: 86, name_ar: 'شاي بالليمون', name_en: 'Lemon Tea' },
+            { id: 'Apple_Ginger_Tea', lvl: 88, name_ar: 'شاي التفاح والزنجبيل', name_en: 'Apple Ginger Tea' },
+            { id: 'Orange_Tea', lvl: 89, name_ar: 'شاي بالبرتقال', name_en: 'Orange Tea' },
+            { id: 'Iced_Tea', lvl: 92, name_ar: 'شاي مثلج', name_en: 'Iced Tea' },
+            { id: 'Mint_Tea', lvl: 97, name_ar: 'شاي بالنعناع', name_en: 'Mint Tea' },
+            { id: 'Chamomile_Tea', lvl: 100, name_ar: 'شاي البابونج', name_en: 'Chamomile Tea' },
+            { id: 'Pomegranate_Tea', lvl: 107, name_ar: 'شاي بالرمان', name_en: 'Pomegranate Tea' }
+        ]},
+        { id: 'bbq', name_ar: '🔥 الشواية', name_en: 'BBQ Grill', name_es: '🔥 Parrilla BBQ', name_fr: '🔥 Grill BBQ', name_de: '🔥 BBQ-Grill', name_pl: '🔥 Grill BBQ', name_ja: '🔥 バーベキュー・グリル', name_zh: '🔥 烧烤架', name_hi: '🔥 BBQ ग्रिल', items: [
+            { id: 'Pancake', lvl: 9, name_ar: 'بان كيك', name_en: 'Pancake' }, 
+            { id: 'Bacon_and_Eggs', lvl: 11, name_ar: 'بيض ولحم مقدد', name_en: 'Bacon and Eggs' }, 
+            { id: 'Hamburger', lvl: 18, name_ar: 'همبرغر', name_en: 'Hamburger' }, 
+            { id: 'Fish_Burger', lvl: 27, name_ar: 'برغر سمك', name_en: 'Fish Burger' },
+            { id: 'Roasted_Tomatoes', lvl: 30, name_ar: 'طماطم مشوية', name_en: 'Roasted Tomatoes' },
+            { id: 'Baked_Potato', lvl: 35, name_ar: 'بطاطس مشوية', name_en: 'Baked Potato' },
+            { id: 'Fish_and_Chips', lvl: 67, name_ar: 'سمك وبطاطا', name_en: 'Fish and Chips' },
+            { id: 'Grilled_Asparagus', lvl: 67, name_ar: 'هليون مشوي', name_en: 'Grilled Asparagus' },
+            { id: 'Lobster_Skewer', lvl: 68, name_ar: 'سيخ كركند', name_en: 'Lobster Skewer' },
+            { id: 'Grilled_Onion', lvl: 68, name_ar: 'بصل مشوي', name_en: 'Grilled Onion' },
+            { id: 'Garlic_Bread', lvl: 72, name_ar: 'خبز بالثوم', name_en: 'Garlic Bread' },
+            { id: 'Winter_Veggies', lvl: 72, name_ar: 'خضروات شتوية', name_en: 'Winter Veggies' },
+            { id: 'Stuffed_Peppers', lvl: 80, name_ar: 'فلفل محشي', name_en: 'Stuffed Peppers' },
+            { id: 'Grilled_Eggplant', lvl: 90, name_ar: 'باذنجان مشوي', name_en: 'Grilled Eggplant' },
+            { id: 'Banana_Pancakes', lvl: 94, name_ar: 'بان كيك بالموز', name_en: 'Banana Pancakes' },
+            { id: 'Fish_Skewer', lvl: 96, name_ar: 'سيخ سمك', name_en: 'Fish Skewer' }
+        ]},
+        { id: 'pie_oven', name_ar: '🥧 فرن الفطائر', name_en: 'Pie Oven', name_es: '🥧 Horno de Pasteles', name_fr: '🥧 Four à Tartes', name_de: '🥧 Kuchenofen', name_pl: '🥧 Piekarnik do Ciast', name_ja: '🥧 パイ・オーブン', name_zh: '🥧 馅饼烤箱', name_hi: '🥧 पाई ओवन', items: [
+            { id: 'Carrot_Pie', lvl: 14, name_ar: 'فطيرة جزر', name_en: 'Carrot Pie' }, 
+            { id: 'Pumpkin_Pie', lvl: 15, name_ar: 'فطيرة يقطين', name_en: 'Pumpkin Pie' }, 
+            { id: 'Bacon_Pie', lvl: 18, name_ar: 'فطيرة لحم مقدد', name_en: 'Bacon Pie' }, 
+            { id: 'Apple_Pie', lvl: 28, name_ar: 'فطيرة تفاح', name_en: 'Apple Pie' },
+            { id: 'Fish_Pie', lvl: 28, name_ar: 'فطيرة سمك', name_en: 'Fish Pie' },
+            { id: 'Feta_Pie', lvl: 34, name_ar: 'فطيرة جبنة فيتا', name_en: 'Feta Pie' },
+            { id: 'Casserole', lvl: 36, name_ar: 'طاجن', name_en: 'Casserole' },
+            { id: 'Shepherds_Pie', lvl: 39, name_ar: 'فطيرة الراعي', name_en: 'Shepherds Pie' },
+            { id: 'Asparagus_Quiche', lvl: 49, name_ar: 'كيش الهليون', name_en: 'Asparagus Quiche' },
+            { id: 'Chocolate_Pie', lvl: 65, name_ar: 'فطيرة شوكولاتة', name_en: 'Chocolate Pie' },
+            { id: 'Lemon_Pie', lvl: 67, name_ar: 'فطيرة ليمون', name_en: 'Lemon Pie' },
+            { id: 'Peach_Tart', lvl: 76, name_ar: 'تارت الخوخ', name_en: 'Peach Tart' },
+            { id: 'Passion_Fruit_Pie', lvl: 92, name_ar: 'فطيرة فاكهة العاطفة', name_en: 'Passion Fruit Pie' },
+            { id: 'Mushroom_Pot_Pie', lvl: 97, name_ar: 'فطيرة وعاء الفطر', name_en: 'Mushroom Pot Pie' },
+            { id: 'Eggplant_Parmesan', lvl: 99, name_ar: 'باذنجان بارميزان', name_en: 'Eggplant Parmesan' }
+        ]},
+        { id: 'bakery', name_ar: '🍞 فرن الخبز', name_en: 'Bakery', name_es: '🍞 Panadería', name_fr: '🍞 Boulangerie', name_de: '🍞 Bäckerei', name_pl: '🍞 Piekarnia', name_ja: '🍞 ベーカリー', name_zh: '🍞 面包店', name_hi: '🍞 बेकरी', items: [
+            { id: 'Bread', lvl: 2, name_ar: 'خبز', name_en: 'Bread' }, 
+            { id: 'Corn_Bread', lvl: 7, name_ar: 'خبز الذرة', name_en: 'Corn Bread' }, 
+            { id: 'Cookie', lvl: 10, name_ar: 'بسكويت', name_en: 'Cookie' }, 
+            { id: 'Raspberry_Muffin', lvl: 19, name_ar: 'مافن التوت', name_en: 'Raspberry Muffin' },
+            { id: 'Blackberry_Muffin', lvl: 26, name_ar: 'مافن العليق', name_en: 'Blackberry Muffin' },
+            { id: 'Pizza', lvl: 33, name_ar: 'بيتزا', name_en: 'Pizza' },
+            { id: 'Blueberry_Muffin', lvl: 33, name_ar: 'مافن التوت الأزرق', name_en: 'Blueberry Muffin' },
+            { id: 'Spicy_Pizza', lvl: 37, name_ar: 'بيتزا حارة', name_en: 'Spicy Pizza' },
+            { id: 'Potato_Bread', lvl: 39, name_ar: 'خبز البطاطس', name_en: 'Potato Bread' },
+            { id: 'Frutti_di_Mare_Pizza', lvl: 45, name_ar: 'بيتزا فواكه البحر', name_en: 'Frutti di Mare Pizza' },
+            { id: 'Gingerbread_Cookie', lvl: 86, name_ar: 'بسكويت الزنجبيل', name_en: 'Gingerbread Cookie' },
+            { id: 'Banana_Bread', lvl: 91, name_ar: 'خبز الموز', name_en: 'Banana Bread' },
+            { id: 'Macaroon', lvl: 101, name_ar: 'ماكارون', name_en: 'Macaroon' },
+            { id: 'Pineapple_Coconut_Bars', lvl: 120, name_ar: 'قضبان الأناناس وجوز الهند', name_en: 'Pineapple Coconut Bars' }
+        ]},
+        { id: 'cake_oven', name_ar: '🎂 مخبز الكيك', name_en: 'Cake Oven', name_es: '🎂 Horno de Pasteles', name_fr: '🎂 Four à Gâteaux', name_de: '🎂 Kuchenofen', name_pl: '🎂 Piekarnik do Ciast', name_ja: '🎂 ケーキ・オーブン', name_zh: '🎂 蛋糕烤箱', name_hi: '🎂 केक ओवन', items: [
+            { id: 'Carrot_Cake', lvl: 21, name_ar: 'كعكة الجزر', name_en: 'Carrot Cake' }, 
+            { id: 'Cream_Cake', lvl: 23, name_ar: 'كعكة الكريمة', name_en: 'Cream Cake' }, 
+            { id: 'Red_Berry_Cake', lvl: 23, name_ar: 'كعكة التوت الأحمر', name_en: 'Red Berry Cake' }, 
+            { id: 'Cheesecake', lvl: 24, name_ar: 'كعكة الجبن', name_en: 'Cheesecake' },
+            { id: 'Blueberry_Cheesecake', lvl: 31, name_ar: 'كعكة الجبن بالتوت الأزرق', name_en: 'Blueberry Cheesecake' },
+            { id: 'Strawberry_Cake', lvl: 35, name_ar: 'كعكة الفراولة', name_en: 'Strawberry Cake' },
+            { id: 'Chocolate_Cake', lvl: 36, name_ar: 'كعكة الشوكولاتة', name_en: 'Chocolate Cake' },
+            { id: 'Potato_Feta_Cake', lvl: 38, name_ar: 'كعكة البطاطس والفيتا', name_en: 'Potato Feta Cake' },
+            { id: 'Honey_Apple_Cake', lvl: 42, name_ar: 'كعكة العسل والتفاح', name_en: 'Honey Apple Cake' },
+            { id: 'Fancy_Cake', lvl: 54, name_ar: 'كعكة فاخرة', name_en: 'Fancy Cake' },
+            { id: 'Pineapple_Cake', lvl: 65, name_ar: 'كعكة الأناناس', name_en: 'Pineapple Cake' },
+            { id: 'Lemon_Cake', lvl: 68, name_ar: 'كعكة الليمون', name_en: 'Lemon Cake' },
+            { id: 'Fruit_Cake', lvl: 89, name_ar: 'كعكة الفاكهة', name_en: 'Fruit Cake' },
+            { id: 'Chocolate_Roll', lvl: 95, name_ar: 'لفافة شوكولاتة', name_en: 'Chocolate Roll' },
+            { id: 'Pomegranate_Cake', lvl: 108, name_ar: 'كعكة الرمان', name_en: 'Pomegranate Cake' }
+        ]},
+        { id: 'sugar', name_ar: '🍬 مطحنة السكر', name_en: 'Sugar Mill', name_es: '🍬 Molino de Azúcar', name_fr: '🍬 Moulin à Sucre', name_de: '🍬 Zuckermühle', name_pl: '🍬 Młyn Cukrowy', name_ja: '🍬 砂糖工場', name_zh: '🍬 糖厂', name_hi: '🍬 शुगर मिल', items: [
+            { id: 'Brown_Sugar', lvl: 7, name_ar: 'سكر بني', name_en: 'Brown Sugar' },
+            { id: 'White_Sugar', lvl: 12, name_ar: 'سكر أبيض', name_en: 'White Sugar' },
+            { id: 'Syrup', lvl: 26, name_ar: 'شراب', name_en: 'Syrup' }
+        ]},
+        { id: 'dairy', name_ar: '🥛 معمل الألبان', name_en: 'Dairy', name_es: '🥛 Lácteos', name_fr: '🥛 Laiterie', name_de: '🥛 Molkerei', name_pl: '🥛 Mleczarnia', name_ja: '🥛 酪農場', name_zh: '🥛 奶制品厂', name_hi: '🥛 डेयरी', items: [
+            { id: 'Cream', lvl: 6, name_ar: 'كريمة', name_en: 'Cream' },
+            { id: 'Butter', lvl: 9, name_ar: 'زبدة', name_en: 'Butter' },
+            { id: 'Cheese', lvl: 12, name_ar: 'جبن', name_en: 'Cheese' },
+            { id: 'Goat_Cheese', lvl: 33, name_ar: 'جبن الماعز', name_en: 'Goat Cheese' },
+        ]},
+        { id: 'feed', name_ar: '🌾 مصنع الأعلاف', name_en: 'Feed Mill', name_es: '🌾 Molino de Pienso', name_fr: '🌾 Moulin à Pâtée', name_de: '🌾 Futtermühle', name_pl: '🌾 Młyn Paszowy', name_ja: '🌾 飼料工場', name_zh: '🌾 饲料厂', name_hi: '🌾 चारा मिल', items: [
+            { id: 'Chicken_Feed', lvl: 3, name_ar: 'علف الدجاج', name_en: 'Chicken Feed' },
+            { id: 'Cow_Feed', lvl: 6, name_ar: 'علف الأبقار', name_en: 'Cow Feed' },
+            { id: 'Pig_Feed', lvl: 10, name_ar: 'علف الخنازير', name_en: 'Pig Feed' },
+            { id: 'Sheep_Feed', lvl: 16, name_ar: 'علف الأغنام', name_en: 'Sheep Feed' },
+            { id: 'Goat_Feed', lvl: 32, name_ar: 'علف الماعز', name_en: 'Goat Feed' },
+            { id: 'Wheat_Bundle', lvl: 40, name_ar: 'حزمة قمح', name_en: 'Wheat Bundle' },
+            { id: 'Meat_Bucket', lvl: 90, name_ar: 'دلو اللحم', name_en: 'Meat Bucket' }, 
+        ]},
+        { id: 'loom', name_ar: '🧵 ماكينة النسيج', name_en: 'Loom', name_es: '🧵 Telar', name_fr: '🧵 Métier à Tisser', name_de: '🧵 Webstuhl', name_pl: '🧵 Krosno', name_ja: '🧵 織り機', name_zh: '🧵 织布机', name_hi: '🧵 करघा', items: [
+            { id: 'Sweater', lvl: 17, name_ar: 'سترة', name_en: 'Sweater' }, 
+            { id: 'Cotton_Fabric', lvl: 18, name_ar: 'قماش قطني', name_en: 'Cotton Fabric' }, 
+            { id: 'Blue_Woolly_Hat', lvl: 19, name_ar: 'قبعة صوفية زرقاء', name_en: 'Blue Woolly Hat' }, 
+            { id: 'Blue_Sweater', lvl: 20, name_ar: 'سترة زرقاء', name_en: 'Blue Sweater' },
+            { id: 'Red_Scarf', lvl: 48, name_ar: 'وشاح أحمر', name_en: 'Red Scarf' },
+            { id: 'Flower_Shawl', lvl: 71, name_ar: 'شال بالورود', name_en: 'Flower Shawl' }
+        ]},
+        { id: 'sewing_machine', name_ar: '✂️ ماكينة الخياطة', name_en: 'Sewing Machine', name_es: '✂️ Máquina de Coser', name_fr: '✂️ Machine à Coudre', name_de: '✂️ Nähmaschine', name_pl: '✂️ Maszyna do Szycia', name_ja: '✂️ ミシン', name_zh: '✂️ 缝纫机', name_hi: '✂️ सिलाई मशीन', items: [
+            { id: 'Cotton_Shirt', lvl: 19, name_ar: 'قميص قطني', name_en: 'Cotton Shirt' }, 
+            { id: 'Wooly_Chaps', lvl: 21, name_ar: 'سروال صوفي', name_en: 'Wooly Chaps' }, 
+            { id: 'Violet_Dress', lvl: 25, name_ar: 'فستان بنفسجي', name_en: 'Violet Dress' }, 
+            { id: 'Soothing_Pad', lvl: 45, name_ar: 'وسادة مريحة', name_en: 'Soothing Pad' },
+            { id: 'Pillow', lvl: 51, name_ar: 'وسادة', name_en: 'Pillow' },
+            { id: 'Blanket', lvl: 59, name_ar: 'بطانية', name_en: 'Blanket' }
+        ]},
+        { id: 'jeweler', name_ar: '💎 صانع المجوهرات', name_en: 'Jeweler', name_es: '💎 Joyería', name_fr: '💎 Bijouterie', name_de: '💎 Juwelier', name_pl: '💎 Jubiler', name_ja: '💎 宝石商', name_zh: '💎 珠宝商', name_hi: '💎 जौहरी', items: [
+            { id: 'Bracelet', lvl: 38, name_ar: 'سوار', name_en: 'Bracelet' },
+            { id: 'Necklace', lvl: 40, name_ar: 'قلادة', name_en: 'Necklace' },
+            { id: 'Diamond_Ring', lvl: 42, name_ar: 'خاتم ألماس', name_en: 'Diamond Ring' },
+            { id: 'Iron_Bracelet', lvl: 46, name_ar: 'سوار حديدي', name_en: 'Iron Bracelet' },
+            { id: 'Tassel_Earrings', lvl: 59, name_ar: 'أقراط بشراشيب', name_en: 'Tassel Earrings' }
+        ]},
+        { id: 'smelter', name_ar: '⚙️ المصهر', name_en: 'Smelter', name_es: '⚙️ Fundición', name_fr: '⚙️ Fonderie', name_de: '⚙️ Schmelzofen', name_pl: '⚙️ Huta', name_ja: '⚙️ 精錬所', name_zh: '⚙️ 冶炼厂', name_hi: '⚙️ स्मेल्टर', items: [
+            { id: 'Silver_Bar', lvl: 24, name_ar: 'سبيكة فضية', name_en: 'Silver Bar' },
+            { id: 'Gold_Bar', lvl: 25, name_ar: 'سبيكة ذهبية', name_en: 'Gold Bar' },
+            { id: 'Platinum_Bar', lvl: 26, name_ar: 'سبيكة بلاتينية', name_en: 'Platinum Bar' },
+            { id: 'Iron_Bar', lvl: 33, name_ar: 'سبيكة حديدية', name_en: 'Iron Bar' },
+            { id: 'Coal', lvl: 38, name_ar: 'فحم', name_en: 'Coal' }
+        ]},
+        { id: 'coffee_kiosk', name_ar: '☕️ ماكينة القهوة', name_en: 'Coffee Kiosk', name_es: '☕️ Quiosco de Café', name_fr: '☕️ Kiosque à Café', name_de: '☕️ Kaffee-Kiosk', name_pl: '☕️ Kiosk Kawowy', name_ja: '☕️ コーヒー・キオスク', name_zh: '☕️ 咖啡亭', name_hi: '☕️ कॉफी कियोस्क', items: [
+            { id: 'Espresso', lvl: 42, name_ar: 'إسبريسو', name_en: 'Espresso' }, 
+            { id: 'Caffe_Latte', lvl: 43, name_ar: 'كافيه لاتيه', name_en: 'Caffe Latte' }, 
+            { id: 'Caffe_Mocha', lvl: 45, name_ar: 'كافيه موكا', name_en: 'Caffe Mocha' }, 
+            { id: 'Raspberry_Mocha', lvl: 46, name_ar: 'موكا بالتوت', name_en: 'Raspberry Mocha' },
+            { id: 'Hot_Chocolate', lvl: 47, name_ar: 'شوكولاتة ساخنة', name_en: 'Hot Chocolate' },
+            { id: 'Caramel_Latte', lvl: 62, name_ar: 'كراميل لاتيه', name_en: 'Caramel Latte' },
+            { id: 'Iced_Banana_Latte', lvl: 88, name_ar: 'لاتيه مثلج بالموز', name_en: 'Iced Banana Latte' }
+        ]},
+        { id: 'popcorn_machine', name_ar: '🍿 ماكينة الفشار', name_en: 'Popcorn Machine', name_es: '🍿 Máquina de Palomitas', name_fr: '🍿 Machine à Popcorn', name_de: '🍿 Popcornmaschine', name_pl: '🍿 Maszyna do Popcornu', name_ja: '🍿 ポップコーン・メーカー', name_zh: '🍿 爆米花机', name_hi: '🍿 पॉपकॉर्न मशीन', items: [
+            { id: 'Popcorn', lvl: 8, name_ar: 'فشار', name_en: 'Popcorn' }, 
+            { id: 'Buttered_Popcorn', lvl: 16, name_ar: 'فشار بالزبدة', name_en: 'Buttered Popcorn' }, 
+            { id: 'Chili_Popcorn', lvl: 25, name_ar: 'فشار بالفلفل الحار', name_en: 'Chili Popcorn' }, 
+            { id: 'Honey_Popcorn', lvl: 40, name_ar: 'فشار بالعسل', name_en: 'Honey Popcorn' },
+            { id: 'Chocolate_Popcorn', lvl: 44, name_ar: 'فشار بالشوكولاتة', name_en: 'Chocolate Popcorn' },
+            { id: 'Snack_Mix', lvl: 64, name_ar: 'خليط الوجبات الخفيفة', name_en: 'Snack Mix' }
+        ]},
+        { id: 'soup', name_ar: '🍲 صانع الحساء', name_en: 'Soup Kitchen', name_es: '🍲 Cocina de Sopas', name_fr: '🍲 Soupière', name_de: '🍲 Suppenküche', name_pl: '🍲 Kuchnia Zup', name_ja: '🍲 スープキッチン', name_zh: '🍲 汤厨房', name_hi: '🍲 सूप किचन', items: [
+            { id: 'Tomato_Soup', lvl: 39, name_ar: 'حساء الطماطم', name_en: 'Tomato Soup' },
+            { id: 'Mushroom_Soup', lvl: 49, name_ar: 'حساء الفطر', name_en: 'Mushroom Soup' },
+            { id: 'Lobster_Soup', lvl: 50, name_ar: 'حساء الكركند', name_en: 'Lobster Soup' },
+            { id: 'Pumpkin_Soup', lvl: 52, name_ar: 'حساء اليقطين', name_en: 'Pumpkin Soup' },
+            { id: 'Onion_Soup', lvl: 63, name_ar: 'حساء البصل', name_en: 'Onion Soup' },
+            { id: 'Broccoli_Soup', lvl: 70, name_ar: 'حساء البروكلي', name_en: 'Broccoli Soup' }
+        ]},
+        { id: 'sauce_maker', name_ar: '🥣 ماكينة الصلصات', name_en: 'Sauce Maker', name_es: '🥣 Máquina de Salsas', name_fr: '🥣 Machine à Sauces', name_de: '🥣 Saucenmaschine', name_pl: '🥣 Maszyna do Sosów', name_ja: '🥣 ソース・メーカー', name_zh: '🥣 酱料机', name_hi: '🥣 सॉस मेकर', items: [
+            { id: 'Soy_Sauce', lvl: 54, name_ar: 'صلصة الصويا', name_en: 'Soy Sauce' }, 
+            { id: 'Olive_Oil', lvl: 60, name_ar: 'زيت الزيتون', name_en: 'Olive Oil' }, 
+            { id: 'Mayonnaise', lvl: 62, name_ar: 'مايونيز', name_en: 'Mayonnaise' }, 
+            { id: 'Lemon_Curd', lvl: 66, name_ar: 'كريمة الليمون', name_en: 'Lemon Curd' },
+            { id: 'Olive_Dip', lvl: 66, name_ar: 'غموس الزيتون', name_en: 'Olive Dip' },
+            { id: 'Tomato_Sauce', lvl: 69, name_ar: 'صلصة الطماطم', name_en: 'Tomato Sauce' },
+            { id: 'Salsa', lvl: 77, name_ar: 'صلصة السالسا', name_en: 'Salsa' },
+            { id: 'Hummus', lvl: 95, name_ar: 'حمص', name_en: 'Hummus' },
+            { id: 'Tart_Dressing', lvl: 100, name_ar: 'صلصة لاذعة', name_en: 'Tart Dressing' }
+        ]},
+        { id: 'ice_cream_maker', name_ar: '🍦 ماكينة الآيس كريم', name_en: 'Ice Cream Maker', name_es: '🍦 Heladera', name_fr: '🍦 Machine à Glace', name_de: '🍦 Eismaschine', name_pl: '🍦 Maszyna do Lodów', name_ja: '🍦 アイスクリーム・メーカー', name_zh: '🍦 冰淇淋机', name_hi: '🍦 आइसक्रीम मेकर', items: [
+            { id: 'Vanilla_Ice_Cream', lvl: 29, name_ar: 'آيس كريم فانيليا', name_en: 'Vanilla Ice Cream' }, 
+            { id: 'Cherry_Popsicle', lvl: 33, name_ar: 'مصاصة كرز', name_en: 'Cherry Popsicle' }, 
+            { id: 'Strawberry_Ice_Cream', lvl: 34, name_ar: 'آيس كريم فراولة', name_en: 'Strawberry Ice Cream' }, 
+            { id: 'Chocolate_Ice_Cream', lvl: 39, name_ar: 'آيس كريم شوكولاتة', name_en: 'Chocolate Ice Cream' },
+            { id: 'Sesame_Ice_Cream', lvl: 50, name_ar: 'آيس كريم سمسم', name_en: 'Sesame Ice Cream' },
+            { id: 'Peanut_Butter_Milkshake', lvl: 68, name_ar: 'ميلك شيك زبدة الفول السوداني', name_en: 'Peanut Butter Milkshake' },
+            { id: 'Orange_Sorbet', lvl: 78, name_ar: 'شربات برتقال', name_en: 'Orange Sorbet' },
+            { id: 'Affogato', lvl: 78, name_ar: 'أفوجاتو', name_en: 'Affogato' },
+            { id: 'Peach_Ice_Cream', lvl: 83, name_ar: 'آيس كريم خوخ', name_en: 'Peach Ice Cream' },
+            { id: 'Mint_Ice_Cream', lvl: 85, name_ar: 'آيس كريم نعناع', name_en: 'Mint Ice Cream' },
+            { id: 'Banana_Split', lvl: 96, name_ar: 'بانانا سبليت', name_en: 'Banana Split' },
+            { id: 'Coconut_Ice_Cream', lvl: 102, name_ar: 'آيس كريم جوز الهند', name_en: 'Coconut Ice Cream' },
+            { id: 'Fruit_Sorbet', lvl: 106, name_ar: 'شربات فواكه', name_en: 'Fruit Sorbet' }
+        ]},
+        { id: 'jam', name_ar: '🍯 صانع المربى', name_en: 'Jam Maker', name_es: '🍯 Máquina de Mermelada', name_fr: '🍯 Machine à Confuture', name_de: '🍯 Marmeladenmaschine', name_pl: '🍯 Maszyna do Dżemów', name_ja: '🍯 ジャムメーカー', name_zh: '🍯 果酱机', name_hi: '🍯 जैم मेकर', items: [
+            { id: 'Apple_Jam', lvl: 35, name_ar: 'مربى التفاح', name_en: 'Apple Jam' },
+            { id: 'Raspberry_Jam', lvl: 36, name_ar: 'مربى التوت الأحمر', name_en: 'Raspberry Jam' },
+            { id: 'Blackberry_Jam', lvl: 37, name_ar: 'مربى التوت الأسود', name_en: 'Blackberry Jam' },
+            { id: 'Cherry_Jam', lvl: 38, name_ar: 'مربى الكرز', name_en: 'Cherry Jam' },
+            { id: 'Strawberry_Jam', lvl: 50, name_ar: 'مربى الفراولة', name_en: 'Strawberry Jam' },
+            { id: 'Blueberry_Jam', lvl: 70, name_ar: 'مربى التوت الأزرق', name_en: 'Blueberry Jam' },
+            { id: 'Peach_Jam', lvl: 71, name_ar: 'مربى الخوخ', name_en: 'Peach Jam' },
+            { id: 'Marmalade', lvl: 74, name_ar: 'مربى البرتقال', name_en: 'Marmalade' },
+            { id: 'Grape_Jam', lvl: 85, name_ar: 'مربى العنب', name_en: 'Grape Jam' },
+            { id: 'Plum_Jam', lvl: 88, name_ar: 'مربى البرقوق', name_en: 'Plum Jam' },
+            { id: 'Passion_Fruit_Jam', lvl: 96, name_ar: 'مربى فاكهة العاطفة', name_en: 'Passion Fruit Jam' }
+        ]},
+        { id: 'candy_machine', name_ar: '🍬 ماكينة الحلوى', name_en: 'Candy Machine', name_es: '🍬 Máquina de Caramelos', name_fr: '🍬 Machine à Bonbons', name_de: '🍬 Süßigkeitenmaschine', name_pl: '🍬 Maszyna do Słodyczy', name_ja: '🍬 キャンディ・マシーン', name_zh: '🍬 糖果机', name_hi: '🍬 कैंडी मशीन', items: [
+            { id: 'Caramel_Apple', lvl: 51, name_ar: 'تفاحة بالكراميل', name_en: 'Caramel Apple' }, 
+            { id: 'Toffee', lvl: 52, name_ar: 'توفي', name_en: 'Toffee' }, 
+            { id: 'Chocolate', lvl: 54, name_ar: 'شوكولاتة', name_en: 'Chocolate' }, 
+            { id: 'Lollipop', lvl: 57, name_ar: 'مصاصة', name_en: 'Lollipop' },
+            { id: 'Jelly_Beans', lvl: 60, name_ar: 'فول هلامي', name_en: 'Jelly Beans' },
+            { id: 'Honey_Peanuts', lvl: 63, name_ar: 'فول سوداني بالعسل', name_en: 'Honey Peanuts' },
+            { id: 'Cotton_Candy', lvl: 75, name_ar: 'غزل البنات', name_en: 'Cotton Candy' },
+            { id: 'Sesame_Brittle', lvl: 78, name_ar: 'سمسم مقرمش', name_en: 'Sesame Brittle' }
+        ]},
+           { 
+            id: 'animal_products', 
+            name_ar: '🐄 منتجات حيوانية', 
+            name_en: '🐄 Animal Products', 
+            name_es: '🐄 Productos animales', 
+            name_fr: '🐄 Produits animaliers', 
+            name_de: '🐄 Tierprodukte', 
+            name_pl: '🐄 Produkty zwierzęce', 
+            name_ja: '🐄 畜産物', 
+            name_zh: '🐄 动物产品', 
+            name_hi: '🐄 पशु उत्पाद', 
+            items: [
+                { id: 'Egg', lvl: 1, name_ar: 'بيض', name_en: 'Egg', name_es: 'Huevo', name_fr: 'Œuf', name_de: 'Ei', name_pl: 'Jajko', name_ja: '卵', name_zh: '鸡蛋', name_hi: 'अंडा' },
+                { id: 'Milk', lvl: 6, name_ar: 'حليب', name_en: 'Milk', name_es: 'Leche', name_fr: 'Lait', name_de: 'Milch', name_pl: 'Mleko', name_ja: '牛乳', name_zh: '牛奶', name_hi: 'दूध' },
+                { id: 'Bacon', lvl: 10, name_ar: 'لحم مقدد', name_en: 'Bacon', name_es: 'Beicon', name_fr: 'Lard', name_de: 'Speck', name_pl: 'Bekon', name_ja: 'ベーコン', name_zh: '培根', name_hi: 'बेकन' },
+                { id: 'Wool', lvl: 16, name_ar: 'صوف', name_en: 'Wool', name_es: 'Lana', name_fr: 'Laine', name_de: 'Wolle', name_pl: 'Wełna', name_ja: '羊毛', name_zh: '羊毛', name_hi: 'ऊन' },
+                { id: 'Fish_Fillet', lvl: 27, name_ar: 'شرائح سمك', name_en: 'Fish Fillet', name_es: 'Filete de pescado', name_fr: 'Filet de poisson', name_de: 'Fischfilet', name_pl: 'Filet rybny', name_ja: '魚の切り身', name_zh: '鱼肉', name_hi: 'मछली का टुकड़ा' },
+                { id: 'Goat_Milk', lvl: 32, name_ar: 'حليب ماعز', name_en: 'Goat Milk', name_es: 'Leche de cabra', name_fr: 'Lait de chèvre', name_de: 'Ziegenmilch', name_pl: 'Kozie mleko', name_ja: 'ヤギのミルク', name_zh: '山羊奶', name_hi: 'बकरी का दूध' },
+                { id: 'Lobster_Tail', lvl: 44, name_ar: 'ذيل كركند', name_en: 'Lobster Tail', name_es: 'Cola de langosta', name_fr: 'Queue de homard', name_de: 'Hummerschwanz', name_pl: 'Ogon homara', name_ja: 'ロブスターのしっぽ', name_zh: '龙虾尾', name_hi: 'लॉबस्टर की पूंछ' },
+                { id: 'Duck_Feather', lvl: 50, name_ar: 'ريش بط', name_en: 'Duck Feather', name_es: 'Pluma de pato', name_fr: 'Plume de canard', name_de: 'Entenfeder', name_pl: 'Pióro kaczki', name_ja: 'アヒルの羽', name_zh: '鸭毛', name_hi: 'बत्तख का पंख' }
+            ]},
+                { id: 'net', name_ar: '🎣 صانع الشباك', name_en: 'Net Maker', name_es: '🎣 Máquina de Redes', name_fr: '🎣 Machine à Filets', name_de: '🎣 Netzmaschine', name_pl: '🎣 Maszyna do Sieci', name_ja: '🎣 漁網機', name_zh: '🎣 渔网机', name_hi: '🎣 जाल बनाने वाली मशीन', items: [
+            { id: 'Fishing_Net', lvl: 30, name_ar: 'شبكة صيد', name_en: 'Fishing Net' },
+            { id: 'Mystery_Net', lvl: 35, name_ar: 'شبكة غامضة', name_en: 'Mystery Net' },
+            { id: 'Duck_Trap', lvl: 50, name_ar: 'فخ البط', name_en: 'Duck Trap' },
+            { id: 'Lobster_Trap', lvl: 41, name_ar: 'فخ الكركند', name_en: 'Lobster Trap' }
+        ]}
+    ];
+
+    const UI_TEXT = {
+        ar: { 
+            title: "Salam Games - قائمة طلبات هاي داي", 
+            welcome: "مرحباً بك في قائمة الطلبات الكاملة", 
+            choose: "اختر المنتجات وكمياتها من الأسفل.", 
+            copy_link_intro: "لنسخ القائمة برابط يحمل صوراً للمنتجات، اضغط على زر نسخ الرابط 🔗", // TEXT ONLY - No click function
+            copy: "لنسخ القائمة كنص عادي، اضغط على زر نسخ النص ✅", // Adjusted for clarity
+            reset: "اضغط هنا للحذف❌", 
+            total: "الإجمالي:", 
+            confirm: "هل أنت متأكد من تصفير جميع الاختيارات؟", 
+            empty: "الرجاء تحديد بعض المنتجات قبل محاولة النسخ.", 
+            youtube: "تواصل معنا", 
+            social: "تواصل معنا على ديسكورد", 
+            copyBtn: "نسخ النص ✅", 
+            copyLinkBtn: "نسخ الرابط 🔗", 
+            copyLinkSuccess: "تم نسخ الرابط بنجاح! يمكن مشاركته الآن.", 
+            sharedListHeader: "المنتجات المطلوبة", 
+            sharedListReturn: "عرض القائمة الكاملة للتعديل", 
+            sharedWelcomeMessage: 'مرحبًا بك! 💚<br><br>هذه قائمة الطلبات من صديقك. وللعودة إلى الموقع الأصلي اضغط على الزر الأخضر بالأسفل.<br><span style="font-size:0.9em;">تواصل معنا على ديسكورد: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        },
+        en: { 
+            title: "Salam Games - Hay Day Full List", 
+            welcome: "Welcome to the Complete Order List", 
+            choose: "Select the products and quantities below.", 
+            copy_link_intro: "To copy the list as a link with product images, click the Copy Link button 🔗", // TEXT ONLY
+            copy: "To copy the list as plain text, click the Copy Text button ✅", // Adjusted for clarity
+            reset: "Click here to delete ❌", 
+            total: "Total:", 
+            confirm: "Are you sure you want to reset all selections?", 
+            empty: "Please select some products before trying to copy.", 
+            youtube: "Contact us", 
+            social: "Contact us on Discord", 
+            copyBtn: "Copy Text ✅", 
+            copyLinkBtn: "Copy Link 🔗", 
+            copyLinkSuccess: "Link copied successfully! You can share it now.", 
+            sharedListHeader: "Requested Products", 
+            sharedListReturn: "Show Full List for Editing", 
+            sharedWelcomeMessage: 'Welcome! 💚<br><br>This is your friend\'s order list. To return to the original site, click the green button below.<br><span style="font-size:0.9em;">Contact us on Discord: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        }, 
+        es: { 
+            title: "Salam Games - Lista Completa Hay Day", 
+            welcome: "Bienvenido a la Lista Completa de Pedidos", 
+            choose: "Seleccione los productos y cantidades a continuación.", 
+            copy_link_intro: "Para copiar la lista como un enlace con imágenes de productos, haz clic en el botón Copiar Enlace 🔗", // TEXT ONLY
+            copy: "Para copiar la lista como texto simple, haz clic en el botón Copiar Texto ✅", // Adjusted for clarity
+            reset: "Haz clic aquí para eliminar ❌", 
+            total: "Total:", 
+            confirm: "¿Estás seguro de que quieres restablecer todas las selecciones?", 
+            empty: "Selecciona algunos productos antes de intentar copiar.", 
+            youtube: "Contáctanos", 
+            social: "Contáctanos en Discord", 
+            copyBtn: "Copiar Texto ✅", 
+            copyLinkBtn: "Copiar Enlace 🔗", 
+            copyLinkSuccess: "¡Enlace copiado con éxito. Ahora puedes compartirlo!", 
+            sharedListHeader: "Productos Solicitados", 
+            sharedListReturn: "Mostrar Lista Completa para Editar", 
+            sharedWelcomeMessage: '¡Bienvenido! 💚<br><br>Esta es la lista de pedidos de tu amigo. Para volver al sitio original, haz clic en el botón verde de abajo.<br><span style="font-size:0.9em;">Contáctanos en Discord: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        }, 
+        fr: { 
+            title: "Salam Games - Liste Complète Hay Day", 
+            welcome: "Bienvenue sur la Liste Complète des Commandes", 
+            choose: "Sélectionnez les produits et les quantités ci-dessous.", 
+            copy_link_intro: "Pour copier la liste sous forme de lien avec images de produits, cliquez sur le bouton Copier le Lien 🔗", // TEXT ONLY
+            copy: "Pour copier la liste en tant que texte simple, cliquez sur le bouton Copier le Texte ✅", // Adjusted for clarity
+            reset: "Cliquez ici pour supprimer ❌", 
+            total: "Total:", 
+            confirm: "Êtes-vous sûr de vouloir réinitialiser toutes les sélections ?", 
+            empty: "Veuillez sélectionner des produits avant d'essayer de copier.", 
+            youtube: "Contactez-nous", 
+            social: "Contactez-nous sur Discord", 
+            copyBtn: "Copier le Texte ✅", 
+            copyLinkBtn: "Copier le Lien 🔗", 
+            copyLinkSuccess: "Lien copié avec succès ! Vous pouvez le partager maintenant.", 
+            sharedListHeader: "Produits Demandés", 
+            sharedListReturn: "Afficher la Liste Complète pour Modifier", 
+            sharedWelcomeMessage: 'Bienvenue ! 💚<br><br>Voici la liste de commandes de votre ami. Pour revenir au site original, cliquez sur le bouton vert ci-dessous.<br><span style="font-size:0.9em;">Contactez-nous sur Discord : <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        }, 
+        de: { 
+            title: "Salam Games - Hay Day Vollständige Liste", 
+            welcome: "Willkommen zur Vollständigen Bestellliste", 
+            choose: "Wählen Sie die Produkte und Mengen unten aus.", 
+            copy_link_intro: "Um die Liste als Link mit Produktbildern zu kopieren, klicken Sie auf die Schaltfläche Link kopieren 🔗", // TEXT ONLY
+            copy: "Um die Liste als einfachen Text zu kopieren, klicken Sie auf die Schaltfläche Text kopieren ✅", // Adjusted for clarity
+            reset: "Hier klicken zum Löschen ❌", 
+            total: "Gesamt:", 
+            confirm: "Sind Sie sicher, dass Sie alle Auswahlen zurücksetzen möchten?", 
+            empty: "Bitte wählen Sie Produkte aus, bevor Sie versuchen zu kopieren.", 
+            youtube: "Kontaktiere uns", 
+            social: "Kontaktiere uns auf Discord", 
+            copyBtn: "Text kopieren ✅", 
+            copyLinkBtn: "Link kopieren 🔗", 
+            copyLinkSuccess: "Link erfolgreich kopiert! Sie können ihn jetzt teilen.", 
+            sharedListHeader: "Angeforderte Produkte", 
+            sharedListReturn: "Vollständige Liste zur Bearbeitung anzeigen", 
+            sharedWelcomeMessage: 'Willkommen! 💚<br><br>Dies ist die Bestellliste deines Freundes. Um zur Originalseite zurückzukehren, klicke auf den grünen Button unten.<br><span style="font-size:0.9em;">Kontaktiere uns auf Discord: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        }, 
+        pl: { 
+            title: "Salam Games - Pełna Lista Hay Day", 
+            welcome: "Witamy na Pełnej Liście Zamówień", 
+            choose: "Wybierz produkty i ilości poniżej.", 
+            copy_link_intro: "Aby skopiować listę jako link ze zdjęciami produktów, kliknij przycisk Kopiuj Link 🔗", // TEXT ONLY
+            copy: "Aby skopiować listę jako zwykły tekst, kliknij przycisk Kopiuj Tekst ✅", // Adjusted for clarity
+            reset: "Kliknij tutaj, aby usunąć ❌", 
+            total: "Suma:", 
+            confirm: "Czy na pewno chcesz zresetować wszystkie wybory?", 
+            empty: "Wybierz produkty przed próbą skopiowania.", 
+            youtube: "Skontaktuj się", 
+            social: "Skontaktuj się na Discord", 
+            copyBtn: "Kopiuj Tekst ✅", 
+            copyLinkBtn: "Kopiuj Link 🔗", 
+            copyLinkSuccess: "Link skopiowany pomyślnie! Możesz go teraz udostępnić.", 
+            sharedListHeader: "Wymagane Produkty", 
+            sharedListReturn: "Pokaż Pełną Listę do Edycji", 
+            sharedWelcomeMessage: 'Witaj! 💚<br><br>To jest lista zamówień Twojego znajomego. Aby wrócić do oryginalnej witryny, kliknij zielony przycisk poniżej.<br><span style="font-size:0.9em;">Skontaktuj się z nami na Discord: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        }, 
+        zh: { 
+            title: "Salam Games - Hay Day 完整清单", 
+            welcome: "欢迎来到完整订单清单", 
+            choose: "选择下面的产品和数量。", 
+            copy_link_intro: "要将清单复制为带产品图片的链接，请点击 复制链接 按钮 🔗", // TEXT ONLY
+            copy: "要将清单复制为纯文本，请点击 复制文本 按钮 ✅", // Adjusted for clarity
+            reset: "点击这里删除 ❌", 
+            total: "总计:", 
+            confirm: "您确定要重置所有选择吗？", 
+            empty: "请在尝试复制之前选择一些产品。", 
+            youtube: "联系我们", 
+            social: "在Discord联系我们", 
+            copyBtn: "复制文本 ✅", 
+            copyLinkBtn: "复制链接 🔗", 
+            copyLinkSuccess: "链接复制成功！您现在可以分享它。", 
+            sharedListHeader: "请求的产品", 
+            sharedListReturn: "显示完整列表以供编辑", 
+            sharedWelcomeMessage: '欢迎！ 💚<br><br>这是你朋友的订单清单。要返回原始网站，请点击下面的绿色按钮。<br><span style="font-size:0.9em;">在 Discord 联系我们: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        }, 
+        ja: { 
+            title: "Salam Games - Hay Day 完全リスト", 
+            welcome: "完全な注文リストへようこそ", 
+            choose: "以下の商品と数量を選択してください。", 
+            copy_link_intro: "商品画像付きのリンクとしてリストをコピーするには、リンクをコピーボタンをクリック 🔗", // TEXT ONLY
+            copy: "リストをプレーンテキストとしてコピーするには、テキストをコピーボタンをクリック ✅", // Adjusted for clarity
+            reset: "ここをクリックして削除 ❌", 
+            total: "合計:", 
+            confirm: "すべての選択をリセットしてもよろしいですか？", 
+            empty: "コピーを試みる前に、商品を選択してください。", 
+            youtube: "お問い合わせ", 
+            social: "Discordでお問い合わせ", 
+            copyBtn: "テキストをコピー ✅", 
+            copyLinkBtn: "リンクをコピー 🔗", 
+            copyLinkSuccess: "リンクが正常にコピーされました！今すぐ共有できます。", 
+            sharedListHeader: "リクエストされた商品", 
+            sharedListReturn: "編集用の完全リストを表示", 
+            sharedWelcomeMessage: 'ようこそ！ 💚<br><br>これはお友達の注文リストです。元のサイトに戻るには、下の緑色のボタンをクリックしてください。<br><span style="font-size:0.9em;">Discord でお問い合わせ: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        },
+        hi: { 
+            title: "Salam Games - हे डे पूरी सूची", 
+            welcome: "पूरी ऑर्डर सूची में आपका स्वागत है", 
+            choose: "नीचे उत्पादों और मात्राओं का चयन करें।", 
+            copy_link_intro: "उत्पाद छवियों के साथ लिंक के रूप में सूची कॉपी करने के लिए, कॉपी लिंक बटन पर क्लिक करें 🔗", // TEXT ONLY
+            copy: "सूची को सादे पाठ के रूप में कॉपी करने के लिए, कॉपी पाठ बटन पर क्लिक करें ✅", // Adjusted for clarity
+            reset: "हटाने के लिए यहां क्लिक करें ❌", 
+            total: "कुल:", 
+            confirm: "क्या आप वाकई सभी चयन रीसेट करना चाहते हैं?", 
+            empty: "कृपया कॉपी करने से पहले कुछ उत्पादों का चयन करें।", 
+            youtube: "हमसे संपर्क करें", 
+            social: "Discord पर संपर्क करें", 
+            copyBtn: "पाठ कॉपी करें ✅", 
+            copyLinkBtn: "लिंक कॉपी करें 🔗", 
+            copyLinkSuccess: "लिंक सफलतापूर्वक कॉपी हो गया! अब आप इसे साझा कर सकते हैं।", 
+            sharedListHeader: "अनुरोधित उत्पाद", 
+            sharedListReturn: "संपादन के लिए पूरी सूची दिखाएँ", 
+            sharedWelcomeMessage: 'आपका स्वागत है! 💚<br><br>यह आपके दोस्त की ऑर्डर सूची है। मूल साइट पर लौटने के लिए, नीचे दिए गए हरे बटन पर क्लिक करें।<br><span style="font-size:0.9em;">Discord पर संपर्क करें: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>.</span>' 
+        } 
+    }; 
+    let currentLang = localStorage.getItem('haydayListLang') || 'ar'; 
+    let isDarkMode = localStorage.getItem('haydayListTheme') === 'dark'; 
+    let isSharedMode = false; 
+    let selections = {}; 
+
+    function getMachineName(machine) { 
+        return machine[`name_${currentLang}`] || machine.name_en; 
+    } 
+
+    function getItemName(item) { 
+        return item[`name_${currentLang}`] || item.name_en; 
+    } 
+
+    const allItemsFlat = machines.flatMap(m => m.items.map(item => ({ ...item, machineId: m.id }))); 
+
+    function updateUrl() {
+        if (!isSharedMode) return;
+        const encodedList = encodeSelections(selections);
+        const newUrl = window.location.pathname + `?list=${encodedList}&lang=${currentLang}`;
+        window.history.replaceState({}, document.title, newUrl);
+    }
+
+    function renderNormalMode() {
+        const container = document.getElementById('items-container');
+        container.innerHTML = machines.map(m => `
+            <h3 class="category-title">${getMachineName(m)}</h3>
+            <div class="grid">
+                ${m.items.map(i => `
+                    <div class="card" data-item-id="${i.id}">
+                        <img src="${BASE_IMG_PATH}${i.id}.png" alt="${getItemName(i)}" class="item-image">
+                        <span class="item-name">${getItemName(i)}</span>
+                        <span class="item-lvl">Lv. ${i.lvl}</span>
+                        <div class="counter-wrapper">
+                            <button class="btn-count btn-minus" onclick="updateCount('${i.id}', -1)">-</button>
+                            <input type="number" class="count-input" id="count-${i.id}" value="${selections[i.id] || 0}" min="0" oninput="manualUpdate('${i.id}', this.value)">
+                            <button class="btn-count btn-plus" onclick="updateCount('${i.id}', 1)">+</button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `).join('');
+
+        const text = UI_TEXT[currentLang];
+        document.getElementById('app-title').innerText = text.title;
+        document.getElementById('welcome-text').innerText = text.welcome;
+        document.getElementById('instruction-choose').innerText = text.choose;
+        
+        // Render copy link intro as plain text
+        const copyLinkIntroElement = document.getElementById('instruction-copy-link-intro');
+        if (copyLinkIntroElement) {
+            copyLinkIntroElement.innerHTML = text.copy_link_intro || '';
+            copyLinkIntroElement.style.display = 'block'; // Ensure it's visible
+        }
+        
+        // Ensure other instructions are visible
+        const elementsToShow = ['instruction-copy', 'instruction-reset', 'instruction-youtube', 'instruction-social'];
+        elementsToShow.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'block';
+        });
+
+        document.getElementById('instruction-copy').innerText = text.copy;
+        document.getElementById('instruction-reset').innerText = text.reset;
+        document.getElementById('instruction-youtube').innerHTML = `${text.social}: <a href="https://discord.com/users/mm17" target="_blank" class="btn-link-green">💬 Discord: mm17</a>`;
+        document.getElementById('instruction-social').innerHTML = '';
+        document.getElementById('total-label').innerText = text.total;
+        document.getElementById('copy-text-btn').innerText = text.copyBtn;
+        document.getElementById('copy-link-btn').innerText = text.copyLinkBtn;
+        document.getElementById('reset-text').innerText = text.reset;
+        document.getElementById('footer-bar').style.display = 'flex'; 
+
+        // Hide back button in normal mode
+        const backButton = document.getElementById('back-to-full-list');
+        if (backButton) backButton.remove();
+
+        updateTotal();
+        updateLangButtons();
+    }
+
+    function renderSharedMode() {
+        const container = document.getElementById('items-container');
+        const selectedItems = allItemsFlat.filter(i => selections[i.id] > 0);
+        const text = UI_TEXT[currentLang];
+
+        // Header and Welcome Message
+        document.getElementById('app-title').innerText = text.title;
+        document.getElementById('welcome-text').innerHTML = text.sharedWelcomeMessage;
+        document.getElementById('instruction-choose').innerText = '';
+        
+        // Hide/Remove elements not needed in shared view
+        const elementsToHide = ['instruction-copy', 'instruction-reset', 'instruction-youtube', 'instruction-social', 'instruction-copy-link-intro'];
+        elementsToHide.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+
+        if (selectedItems.length === 0) {
+            container.innerHTML = `<h2 class="category-title shared-header">${text.sharedListHeader}</h2><p style="text-align:center;">${text.empty}</p>`;
+        } else { 
+            // Group items by machine
+            const groupedItems = machines.map(m => ({ 
+                name: getMachineName(m), 
+                items: m.items.filter(i => selections[i.id] > 0) 
+            })).filter(g => g.items.length > 0);
+
+            container.innerHTML = `<h2 class="category-title shared-header">${text.sharedListHeader}</h2>`;
+            container.innerHTML += groupedItems.map(g => `
+                <h3 class="category-title" style="font-size:1rem; margin-top:15px; background:var(--primary-dark);">${g.name}</h3>
+                <div class="grid">
+                    ${g.items.map(i => `
+                        <div class="card shared-card" data-item-id="${i.id}">
+                            <img src="${BASE_IMG_PATH}${i.id}.png" alt="${getItemName(i)}" class="item-image">
+                            <span class="item-name">${getItemName(i)}</span>
+                            <div class="shared-count">${selections[i.id]}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+
+        // Footer Bar
+        document.getElementById('footer-bar').style.display = 'flex';
+        document.getElementById('total-label').innerText = text.total;
+        document.getElementById('copy-text-btn').style.display = 'none';
+        document.getElementById('copy-link-btn').style.display = 'none';
+        document.getElementById('reset-text').style.display = 'none';
+
+        // Add a back-to-full-list button
+        const actionBtns = document.getElementById('action-btns');
+        let backButton = document.getElementById('back-to-full-list');
+        if (!backButton) {
+            backButton = document.createElement('button');
+            backButton.id = 'back-to-full-list';
+            backButton.className = 'btn-style';
+            backButton.onclick = () => {
+                isSharedMode = false;
+                selections = {}; // Clear selections when returning from shared mode
+                window.history.replaceState({}, document.title, window.location.pathname);
+                render();
+            };
+            actionBtns.prepend(backButton);
+        }
+        backButton.innerText = text.sharedListReturn;
+        backButton.style.display = 'block';
+
+        document.getElementById('controls').style.display = 'none'; 
+        updateTotal();
+    }
+
+
+    function render() {
+        if (isSharedMode) {
+            renderSharedMode();
+        } else {
+            renderNormalMode();
+        }
+    }
+
+    function updateCount(itemId, delta) {
+        const currentCount = selections[itemId] || 0;
+        let newCount = currentCount + delta;
+        if (newCount < 0) newCount = 0;
+
+        selections[itemId] = newCount;
+        
+        const inputElement = document.getElementById(`count-${itemId}`);
+        if (inputElement) inputElement.value = newCount;
+
+        updateTotal();
+    }
+
+    function manualUpdate(itemId, value) {
+        let newCount = parseInt(value) || 0;
+        if (newCount < 0) newCount = 0;
+        
+        selections[itemId] = newCount;
+        
+        const inputElement = document.getElementById(`count-${itemId}`);
+        if (inputElement) inputElement.value = newCount;
+        
+        updateTotal();
+    }
+
+    function updateTotal() {
+        const total = Object.values(selections).reduce((a, b) => a + b, 0);
+        document.getElementById('total-count').innerText = total;
+    }
+
+    function resetAll() {
+        if (!confirm(UI_TEXT[currentLang].confirm)) return;
+        selections = {};
+        render(); 
+    }
+
+    // --- Encoding/Decoding Logic for URL Sharing ---
+    function encodeSelections(selections) {
+        const selectedItems = Object.entries(selections)
+            .filter(([, count]) => count > 0)
+            .map(([id, count]) => `${id}:${count}`);
+        return btoa(selectedItems.join('|'));
+    }
+
+    function decodeSelections(encodedString) {
+        try {
+            const decoded = atob(encodedString);
+            const pairs = decoded.split('|');
+            const newSelections = {};
+            pairs.forEach(pair => {
+                const [id, countStr] = pair.split(':');
+                const count = parseInt(countStr);
+                if (id && !isNaN(count) && count > 0) {
+                    newSelections[id] = count;
+                }
+            });
+            return newSelections;
+        } catch (e) {
+            console.error("Decoding error:", e);
+            return {};
+        }
+    }
+
+    function copyLink() {
+        if (Object.values(selections).every(count => count === 0)) {
+            alert(UI_TEXT[currentLang].empty);
+            return;
+        }
+
+        const encodedList = encodeSelections(selections);
+        const sharedLink = window.location.origin + window.location.pathname + `?list=${encodedList}&lang=${currentLang}`;
+
+        navigator.clipboard.writeText(sharedLink).then(() => {
+            alert(UI_TEXT[currentLang].copyLinkSuccess);
+        }).catch(err => {
+            console.error('Could not copy link: ', err);
+            alert("فشل النسخ. يرجى النسخ يدوياً: " + sharedLink);
+        });
+    }
+
+    function copyList() {
+        if (Object.values(selections).every(count => count === 0)) {
+            alert(UI_TEXT[currentLang].empty);
+            return;
+        }
+
+        let output = "";
+        const text = UI_TEXT[currentLang];
+
+        // Group and sort items for clean output
+        const groupedItems = machines.map(m => ({ 
+            name: getMachineName(m), 
+            items: m.items.filter(i => selections[i.id] > 0) 
+        })).filter(g => g.items.length > 0);
+
+        groupedItems.forEach(group => {
+            output += `\n**${group.name}**\n`;
+            group.items.forEach(item => {
+                output += `- ${getItemName(item)}: ${selections[item.id]}\n`;
+            });
+        });
+
+        // Add total
+        output += `\n${text.total} ${Object.values(selections).reduce((a, b) => a + b, 0)}`;
+
+        navigator.clipboard.writeText(output.trim()).then(() => {
+            alert(text.copy);
+        }).catch(err => {
+            console.error('Could not copy text: ', err);
+            alert("فشل النسخ. يرجى النسخ يدوياً: " + output.trim());
+        });
+    }
+
+    function setLang(lang) {
+        if (UI_TEXT[lang]) {
+            currentLang = lang;
+            document.documentElement.setAttribute('lang', lang);
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            localStorage.setItem('haydayListLang', lang);
+            render();
+        }
+    }
+
+    function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        document.body.classList.toggle('dark-mode', isDarkMode);
+        localStorage.setItem('haydayListTheme', isDarkMode ? 'dark' : 'light');
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.textContent = isDarkMode ? '☀️' : '🌙';
+    }
+
+    function updateLangButtons() {
+        document.querySelectorAll('.controls .btn-style').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        const langBtn = document.getElementById('lang-' + currentLang);
+        if (langBtn) {
+            langBtn.classList.add('active');
+        }
+    }
+
+
+    function loadStateFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedList = urlParams.get('list');
+        const urlLang = urlParams.get('lang');
+
+        if (urlLang) {
+            currentLang = urlLang; // Load language from URL first
+        }
+
+        if (encodedList) {
+            // Set shared mode and load selections from URL
+            isSharedMode = true; 
+            selections = decodeSelections(encodedList);
+            return true; 
+        }
+        return false;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Try to load state from URL (this also sets isSharedMode and currentLang)
+        let loadedFromUrl = loadStateFromUrl();
+        
+        // 2. If not loaded from URL (i.e., not in shared mode), DO NOT load from localStorage
+        if (!loadedFromUrl) {
+            selections = {}; // Always start fresh on new load/refresh
+        }
+
+        // 3. Apply Theme
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.textContent = '☀️';
+        }
+        
+        // 4. Set Language and Render UI (which calls the appropriate render function)
+        setLang(currentLang);
+    });
+
+</script>
+</body>
+</html>
