@@ -357,6 +357,77 @@
         @media (min-width: 601px) and (max-width: 900px) {
             .grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
         }
+
+        /* ===== فهرس التنقل السريع ===== */
+        .quick-nav {
+            background: var(--wood-light);
+            border: 3px solid var(--wood-border);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .quick-nav-title {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--wood-border);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .quick-nav-title .toggle-arrow {
+            transition: transform 0.3s ease;
+            display: inline-block;
+            font-style: normal;
+        }
+        .quick-nav.collapsed .toggle-arrow {
+            transform: rotate(-90deg);
+        }
+        .quick-nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .quick-nav.collapsed .quick-nav-buttons {
+            display: none;
+        }
+        .nav-btn {
+            background: var(--cream);
+            border: 2px solid var(--wood-light);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+            box-shadow: 0 2px 0 var(--wood-light);
+            text-decoration: none;
+        }
+        .nav-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
+            box-shadow: 0 2px 0 var(--primary-dark);
+        }
+        .nav-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+        @media (max-width: 600px) {
+            .quick-nav { padding: 8px 10px; margin-bottom: 12px; }
+            .nav-btn { font-size: 0.7rem; padding: 4px 8px; }
+        }
     </style>
 </head>
 <body>
@@ -398,6 +469,7 @@
             <button id="theme-toggle-btn" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button>
         </div>
     </div>
+    <div id="quick-nav-container"></div>
     <div id="items-container"></div>
 </div>
 
@@ -1183,9 +1255,48 @@
         window.history.replaceState({}, document.title, newUrl);
     }
 
+    function renderQuickNav() {
+        const navContainer = document.getElementById('quick-nav-container');
+        if (!navContainer) return;
+
+        const isCollapsed = localStorage.getItem('quickNavCollapsed') === 'true';
+        const navLabel = { ar: '⚡ فهرس سريع', en: '⚡ Quick Nav', es: '⚡ Navegación', fr: '⚡ Navigation', de: '⚡ Navigation', pl: '⚡ Nawigacja', zh: '⚡ 快速导航', ja: '⚡ クイックナビ', hi: '⚡ त्वरित नेविगेशन' };
+        const label = navLabel[currentLang] || navLabel.en;
+
+        const buttons = machines.map(m => {
+            const name = getMachineName(m);
+            return `<a class="nav-btn" href="#section-${m.id}" onclick="event.preventDefault(); scrollToSection('${m.id}')">${name}</a>`;
+        }).join('');
+
+        navContainer.innerHTML = `
+            <div class="quick-nav${isCollapsed ? ' collapsed' : ''}" id="quick-nav">
+                <div class="quick-nav-title" onclick="toggleQuickNav()">
+                    <i class="toggle-arrow">▼</i> ${label}
+                </div>
+                <div class="quick-nav-buttons">${buttons}</div>
+            </div>`;
+    }
+
+    function scrollToSection(machineId) {
+        const el = document.getElementById('section-' + machineId);
+        if (el) {
+            const offset = 10;
+            const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    }
+
+    function toggleQuickNav() {
+        const nav = document.getElementById('quick-nav');
+        if (!nav) return;
+        nav.classList.toggle('collapsed');
+        localStorage.setItem('quickNavCollapsed', nav.classList.contains('collapsed') ? 'true' : 'false');
+    }
+
     function renderNormalMode() {
         const container = document.getElementById('items-container');
         container.innerHTML = machines.map(m => `
+            <div id="section-${m.id}">
             <h3 class="category-title">${getMachineName(m)}</h3>
             <div class="grid">
                 ${m.items.map(i => `
@@ -1201,7 +1312,10 @@
                     </div>
                 `).join('')}
             </div>
+            </div>
         `).join('');
+
+        renderQuickNav();
 
         const text = UI_TEXT[currentLang];
         document.getElementById('app-title').innerText = text.title;
@@ -1238,6 +1352,8 @@
     }
 
     function renderSharedMode() {
+        const navContainer = document.getElementById('quick-nav-container');
+        if (navContainer) navContainer.innerHTML = '';
         const container = document.getElementById('items-container');
         const selectedItems = allItemsFlat.filter(i => selections[i.id] > 0);
         const text = UI_TEXT[currentLang];
