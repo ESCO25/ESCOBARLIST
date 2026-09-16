@@ -5285,9 +5285,9 @@
 
     const machines = [
         { id: 'doner_kebab', name_ar: '🌯 كشك الدونر', name_en: 'Doner Kebab Stand', name_es: '🌯 Puesto de Kebab', name_fr: '🌯 Stand de Kebab', name_de: '🌯 Döner-Stand', name_pl: '🌯 Stoisko z Kebabem', name_ja: '🌯 ケバブ・スタンド', name_zh: '🌯 döner烤肉摊', name_hi: '🌯 डोनर कबाब स्टैंड', items: [
-            { id: 'Lamb_Doner_Wrap', lvl: 32, name_ar: 'لفافة دونر لحم الخروف', name_en: 'Lamb Doner Wrap' },
-            { id: 'Spicy_Bean_Doner', lvl: 32, name_ar: 'دونر الفول الحار', name_en: 'Spicy Bean Doner' },
-            { id: 'Tower_Doner_Supreme', lvl: 58, name_ar: 'برج الدونر الممتاز', name_en: 'Tower Doner Supreme' }
+            { id: 'Lamb_Döner_Wrap', lvl: 32, name_ar: 'لفافة دونر لحم الخروف', name_en: 'Lamb Doner Wrap' },
+            { id: 'Spicy_Bean_Döner', lvl: 32, name_ar: 'دونر الفول الحار', name_en: 'Spicy Bean Doner' },
+            { id: 'Tower_Döner_Supreme', lvl: 58, name_ar: 'برج الدونر الممتاز', name_en: 'Tower Doner Supreme' }
         ]},
         { id: 'fish_boat', name_ar: '🚤 قارب السمك', name_en: 'Fish Boat', name_es: '🚤 Barco Pesquero', name_fr: '🚤 Bateau de Pêche', name_de: '🚤 Fischerboot', name_pl: '🚤 Łódź Rybacka', name_ja: '🚤 フィッシングボート', name_zh: '🚤 渔船', name_hi: '🚤 मछली पकड़ने की नाव', items: [
             { id: 'Fish_Meat', lvl: 27, name_ar: 'لحم السمك', name_en: 'Fish Meat' },
@@ -5741,7 +5741,7 @@
             { id: 'Salsa', lvl: 77, name_ar: 'صلصة السالسا', name_en: 'Salsa' },
             { id: 'Hummus', lvl: 95, name_ar: 'حمص', name_en: 'Hummus' },
             { id: 'Tart_Dressing', lvl: 100, name_ar: 'صلصة لاذعة', name_en: 'Tart Dressing' },
-            { id: 'Bean_Dip', lvl: 54, name_ar: 'غموس الفول', name_en: 'Bean Dip' }
+            { id: 'Bean_Dip', lvl: 54, name_ar: 'صلصة الفاصوليا', name_en: 'Bean Dip' }
         ]},
         { id: 'ice_cream_maker', name_ar: '🍦 ماكينة الآيس كريم', name_en: 'Ice Cream Maker', name_es: '🍦 Heladera', name_fr: '🍦 Machine à Glace', name_de: '🍦 Eismaschine', name_pl: '🍦 Maszyna do Lodów', name_ja: '🍦 アイスクリーム・メーカー', name_zh: '🍦 冰淇淋机', name_hi: '🍦 आइसक्रीम मेकर', items: [
             { id: 'Vanilla_Ice_Cream', lvl: 29, name_ar: 'آيس كريم فانيليا', name_en: 'Vanilla Ice Cream' }, 
@@ -5860,7 +5860,6 @@
         ]},
         { id: 'salad_bar', name_ar: '🥗 بار السلطة', name_en: '🥗 Salad Bar', name_es: '🥗 Bar de Ensaladas', name_fr: '🥗 Bar à Salades', name_de: '🥗 Salatbar', name_pl: '🥗 Bar Sałatkowy', name_ja: '🥗 サラダバー', name_zh: '🥗 沙拉吧', name_hi: '🥗 सलाद बार', items: [
             { id: 'Feta_Salad', lvl: 58, name_ar: 'سلطة الفيتا', name_en: 'Feta Salad' },
-            { id: 'BLT_Salad', lvl: 62, name_ar: 'سلطة BLT', name_en: 'BLT Salad' },
             { id: 'Seafood_Salad', lvl: 64, name_ar: 'سلطة المأكولات البحرية', name_en: 'Seafood Salad' },
             { id: 'Pasta_Salad', lvl: 67, name_ar: 'سلطة الباستا', name_en: 'Pasta Salad' },
             { id: 'Veggie_Platter', lvl: 74, name_ar: 'طبق خضار', name_en: 'Veggie Platter' },
@@ -5868,12 +5867,11 @@
             { id: 'Fruit_Salad', lvl: 82, name_ar: 'سلطة فواكه', name_en: 'Fruit Salad' },
             { id: 'Summer_Salad', lvl: 84, name_ar: 'سلطة الصيف', name_en: 'Summer Salad' },
             { id: 'Mushroom_Salad', lvl: 93, name_ar: 'سلطة الفطر', name_en: 'Mushroom Salad' },
-            { id: 'Greek_Salad', lvl: 58, name_ar: 'سلطة يونانية', name_en: 'Greek Salad' },
             { id: 'Bacon_Salad', lvl: 62, name_ar: 'سلطة اللحم المقدد', name_en: 'Bacon Salad' },
             { id: 'Beetroot_Salad', lvl: 76, name_ar: 'سلطة الشمندر', name_en: 'Beetroot Salad' },
             { id: 'Coleslaw', lvl: 75, name_ar: 'سلطة الملفوف', name_en: 'Coleslaw' },
             { id: 'Orange_Salad', lvl: 117, name_ar: 'سلطة البرتقال', name_en: 'Orange Salad' },
-            { id: 'Bean_Salad', lvl: 58, name_ar: 'سلطة الفول', name_en: 'Bean Salad' }
+            { id: 'Bean_Salad', lvl: 58, name_ar: 'سلطة الفاصوليا', name_en: 'Bean Salad' }
         ]},
         { id: 'sandwich_bar', name_ar: '🥪 بار الساندويتش', name_en: '🥪 Sandwich Bar', name_es: '🥪 Bar de Sándwiches', name_fr: '🥪 Bar à Sandwiches', name_de: '🥪 Sandwich-Bar', name_pl: '🥪 Bar Kanapkowy', name_ja: '🥪 サンドイッチバー', name_zh: '🥪 三明治吧', name_hi: '🥪 सैंडविच बार', items: [
             { id: 'Bacon_Toast', lvl: 65, name_ar: 'توست اللحم المقدد', name_en: 'Bacon Toast' },
